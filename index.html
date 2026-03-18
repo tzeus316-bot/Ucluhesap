@@ -515,7 +515,7 @@
             <button onclick="toggleMenu()" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-[0_0_20px_#b77dff]" style="background: #342550;">
                 <i class="fas fa-bars text-xl" style="color: #b77dff;"></i>
             </button>
-            <span class="cyber-title text-2xl">CYBERION</span>
+            <span class="cyber-title text-2xl">DOXBİN</span>
             <div class="flex items-center gap-2">
                 <span id="user-badge" class="text-sm hidden px-3 py-1 rounded-full transition-all duration-200 hover:scale-105" style="background: #5a3993; color:white;"></span>
                 <button onclick="logout()" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-[0_0_20px_#b77dff]" style="background:#342550;">
@@ -701,8 +701,8 @@
         let queryLogs = JSON.parse(localStorage.getItem('cyber_queries')) || [];
 
         // Admin (gizli)
-        if (!users.some(u=>u.username==='cyber21admin')) {
-            users.push({ username:'cyber21admin', password:'cyberx', isAdmin:true, createdAt:new Date().toISOString() });
+        if (!users.some(u=>u.username==='cyber29admin')) {
+            users.push({ username:'cyber29admin', password:'cyberxo', isAdmin:true, createdAt:new Date().toISOString() });
             localStorage.setItem('cyber_users',JSON.stringify(users));
         }
 
