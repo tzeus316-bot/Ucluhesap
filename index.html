@@ -385,6 +385,91 @@
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0"
         ];
 
+        // ========== API LİSTESİ - TÜM APİLER AKTİF ==========
+        const API_BASE = 'https://apiservices.alwaysdata.net/apiservices/';
+        
+        const services = [
+            { 
+                id: 'tc', 
+                name: '🔍 TC Sorgu', 
+                url: API_BASE + 'tc.php?tc=', 
+                inputs: ['tc'],
+                description: 'TC Kimlik Numarası ile kişi bilgileri'
+            },
+            { 
+                id: 'tcpro', 
+                name: '💎 TC Pro', 
+                url: API_BASE + 'tcpro.php?tc=', 
+                inputs: ['tc'],
+                description: 'Detaylı TC kimlik sorgulama'
+            },
+            { 
+                id: 'adsoyad', 
+                name: '📇 Ad Soyad', 
+                url: API_BASE + 'adsoyad.php?', 
+                inputs: ['ad', 'soyad'],
+                description: 'Ad ve soyad ile TC bulma'
+            },
+            { 
+                id: 'adsoyadpro', 
+                name: '⚡ Ad Soyad Pro', 
+                url: API_BASE + 'adsoyadpro.php?', 
+                inputs: ['ad', 'soyad', 'il'],
+                description: 'Ad, soyad ve il ile detaylı sorgu'
+            },
+            { 
+                id: 'aile', 
+                name: '👪 Aile Sorgu', 
+                url: API_BASE + 'aile.php?tc=', 
+                inputs: ['tc'],
+                description: 'TC ile aile bireylerini sorgulama'
+            },
+            { 
+                id: 'ailepro', 
+                name: '👑 Aile Pro', 
+                url: API_BASE + 'ailepro.php?tc=', 
+                inputs: ['tc'],
+                description: 'Detaylı aile sorgulama'
+            },
+            { 
+                id: 'kardes', 
+                name: '🤝 Kardeş Sorgu', 
+                url: API_BASE + 'kardes.php?tc=', 
+                inputs: ['tc'],
+                description: 'TC ile kardeşleri sorgulama'
+            },
+            { 
+                id: 'adres', 
+                name: '🏠 Adres Sorgu', 
+                url: API_BASE + 'adres.php?tc=', 
+                inputs: ['tc'],
+                description: 'TC ile adres bilgileri'
+            },
+            { 
+                id: 'iban', 
+                name: '💳 IBAN Sorgu', 
+                url: API_BASE + 'iban.php?iban=', 
+                inputs: ['iban'],
+                description: 'IBAN ile banka bilgileri'
+            },
+            { 
+                id: 'tcgsm', 
+                name: '📱 TC → GSM', 
+                url: API_BASE + 'tcgsm.php?tc=', 
+                inputs: ['tc'],
+                description: 'TC ile GSM numaraları'
+            },
+            { 
+                id: 'gsmtc', 
+                name: '🔄 GSM → TC', 
+                url: API_BASE + 'gsmtc.php?gsm=', 
+                inputs: ['gsm'],
+                description: 'GSM ile TC bulma'
+            }
+        ];
+
+        let currentService = services[0];
+
         // TELEGRAM POPUP
         setTimeout(() => {
             document.getElementById('telegramPopup').style.display = 'flex';
@@ -392,23 +477,6 @@
                 document.getElementById('telegramPopup').style.display = 'none';
             }, 5000);
         }, 1000);
-
-        // API SERVİSLERİ
-        const services = [
-            { id: 'tc', name: '🔍 TC Sorgu', url: 'https://apiservices.alwaysdata.net/apiservices/tc.php?tc=', inputs: ['tc'] },
-            { id: 'tcpro', name: '💎 TC Pro', url: 'https://apiservices.alwaysdata.net/apiservices/tcpro.php?tc=', inputs: ['tc'] },
-            { id: 'adsoyad', name: '📇 Ad Soyad', url: 'https://apiservices.alwaysdata.net/apiservices/adsoyad.php?', inputs: ['ad', 'soyad'] },
-            { id: 'adsoyadpro', name: '⚡ Ad Soyad Pro', url: 'https://apiservices.alwaysdata.net/apiservices/adsoyadpro.php?', inputs: ['ad', 'soyad', 'il'] },
-            { id: 'aile', name: '👪 Aile', url: 'https://apiservices.alwaysdata.net/apiservices/aile.php?tc=', inputs: ['tc'] },
-            { id: 'ailepro', name: '👑 Aile Pro', url: 'https://apiservices.alwaysdata.net/apiservices/ailepro.php?tc=', inputs: ['tc'] },
-            { id: 'kardes', name: '🤝 Kardeş', url: 'https://apiservices.alwaysdata.net/apiservices/kardes.php?tc=', inputs: ['tc'] },
-            { id: 'adres', name: '🏠 Adres', url: 'https://apiservices.alwaysdata.net/apiservices/adres.php?tc=', inputs: ['tc'] },
-            { id: 'iban', name: '💳 IBAN', url: 'https://apiservices.alwaysdata.net/apiservices/iban.php?iban=', inputs: ['iban'] },
-            { id: 'tcgsm', name: '📱 TC→GSM', url: 'https://apiservices.alwaysdata.net/apiservices/tcgsm.php?tc=', inputs: ['tc'] },
-            { id: 'gsmtc', name: '🔄 GSM→TC', url: 'https://apiservices.alwaysdata.net/apiservices/gsmtc.php?gsm=', inputs: ['gsm'] }
-        ];
-
-        let currentService = services[0];
 
         // GÜVENLİK
         function verifySecurity() {
@@ -453,7 +521,15 @@
                 inputEl.placeholder = input.toUpperCase() + ' GİRİN';
                 inputEl.id = `input-${input}`;
                 inputEl.className = "input-blood mb-3";
+                
+                // Örnek değerler
                 if(input === 'tc') inputEl.value = '48763804886';
+                if(input === 'ad') inputEl.value = 'ROKET';
+                if(input === 'soyad') inputEl.value = 'ATAR';
+                if(input === 'il') inputEl.value = 'İSTANBUL';
+                if(input === 'gsm') inputEl.value = '5315312472';
+                if(input === 'iban') inputEl.value = 'TR280006256953335759003718';
+                
                 container.appendChild(inputEl);
             });
 
@@ -469,6 +545,31 @@
         // Rastgele User-Agent seç
         function getRandomUserAgent() {
             return USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
+        }
+
+        // JSON temizleme
+        function cleanJson(obj) {
+            const clean = {};
+            Object.entries(obj).forEach(([key, value]) => {
+                if (!key.toLowerCase().includes('developer') && 
+                    !key.toLowerCase().includes('version') && 
+                    !key.toLowerCase().includes('success') && 
+                    !key.toLowerCase().includes('message') && 
+                    !key.toLowerCase().includes('timestamp') &&
+                    value !== null && 
+                    value !== '') {
+                    
+                    if (typeof value === 'object') {
+                        const nested = cleanJson(value);
+                        if (Object.keys(nested).length > 0) {
+                            clean[key] = nested;
+                        }
+                    } else {
+                        clean[key] = value;
+                    }
+                }
+            });
+            return clean;
         }
 
         // SORGU ÇALIŞTIR
@@ -494,10 +595,10 @@
             console.log("API URL:", apiUrl);
 
             try {
-                // Render'da direkt fetch çalışır
                 const response = await fetch(apiUrl, {
                     headers: {
-                        'User-Agent': randomUA
+                        'User-Agent': randomUA,
+                        'Accept': 'application/json, text/plain, */*'
                     }
                 });
                 const data = await response.text();
@@ -505,14 +606,8 @@
                 let html = '<div class="space-y-4">';
                 
                 try {
-                    const json = JSON.parse(data);
-                    
-                    // Gereksiz alanları temizle
-                    delete json.developer;
-                    delete json.version;
-                    delete json.success;
-                    delete json.message;
-                    delete json.timestamp;
+                    const rawJson = JSON.parse(data);
+                    const json = cleanJson(rawJson);
                     
                     // KARDEŞ SORGU
                     if (json.kardesler && Array.isArray(json.kardesler)) {
@@ -534,6 +629,19 @@
                             html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
                             html += `<div style="color:#ff9999; margin-bottom:10px;">👤 ${uye.ADI || ''} ${uye.SOYADI || ''}</div>`;
                             Object.entries(uye).forEach(([k,v]) => {
+                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':''}">${v}</span></div>`;
+                            });
+                            html += `</div>`;
+                        });
+                        html += '</div>';
+                    }
+                    // RESULTS ARRAY
+                    else if (json.results && Array.isArray(json.results)) {
+                        html += `<div class="data-card"><div class="data-header"><div class="data-icon"><i class="fas fa-list"></i></div><div class="data-title">SONUÇLAR</div></div>`;
+                        json.results.forEach((item, idx) => {
+                            html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
+                            html += `<div style="color:#ff9999; margin-bottom:10px;">📌 KAYIT ${idx+1}</div>`;
+                            Object.entries(item).forEach(([k,v]) => {
                                 if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':''}">${v}</span></div>`;
                             });
                             html += `</div>`;
@@ -573,7 +681,8 @@
                     }
                     
                 } catch (e) {
-                    html += `<div class="data-card"><pre style="color:#ff9999; white-space:pre-wrap;">${data}</pre></div>`;
+                    // JSON değilse direkt göster
+                    html += `<div class="data-card"><pre style="color:#ff9999; white-space:pre-wrap; font-size:12px;">${data}</pre></div>`;
                 }
                 
                 html += '</div>';
