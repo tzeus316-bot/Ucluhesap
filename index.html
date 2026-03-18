@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DOXBİN | KANLI SORGÜ</title>
+    <title>DOXBİN | SORGÜ PANELİ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -19,54 +19,56 @@
             height: 100%;
             overflow: hidden;
             background: #0a0000;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
         
-        /* KANLI ARKAPLAN - OPTİMİZE */
-        .blood-container {
+        /* KANLI ARKAPLAN */
+        .blood-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: linear-gradient(145deg, #1a0303 0%, #000000 100%);
             z-index: -2;
         }
         
-        .blood-base {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #1a0303 0%, #000000 100%);
-        }
-        
-        .blood-layer {
-            position: absolute;
+        .blood-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at 30% 40%, rgba(180,0,0,0.3) 0%, transparent 40%),
                         radial-gradient(circle at 70% 60%, rgba(120,0,0,0.2) 0%, transparent 45%);
             animation: bloodWave 8s ease-in-out infinite;
+            z-index: -1;
         }
         
-        .blood-drip {
-            position: absolute;
+        .blood-drips {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(150,0,0,0.1) 50px, rgba(150,0,0,0.1) 100px);
             animation: bloodFlow 20s linear infinite;
+            z-index: -1;
         }
         
-        .ninja {
-            position: absolute;
+        .ninja-shadow {
+            position: fixed;
             bottom: 5%;
             right: 5%;
-            width: 180px;
-            height: 230px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250"><path d="M100,30 L120,70 L150,60 L160,100 L130,130 L140,180 L110,210 L100,220 L90,210 L60,180 L70,130 L40,100 L50,60 L80,70 Z" fill="%238b0000" opacity="0.3"/><circle cx="100" cy="40" r="15" fill="%23660000" opacity="0.5"/></svg>');
+            width: 200px;
+            height: 250px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250"><path d="M100,30 L120,70 L150,60 L160,100 L130,130 L140,180 L110,210 L100,220 L90,210 L60,180 L70,130 L40,100 L50,60 L80,70 Z" fill="%238b0000" opacity="0.3"/><circle cx="100" cy="40" r="15" fill="%23660000" opacity="0.5"/><path d="M80,180 L120,180 L130,230 L70,230 Z" fill="%238b0000" opacity="0.3"/></svg>');
             background-size: contain;
             background-repeat: no-repeat;
             opacity: 0.4;
             filter: drop-shadow(0 0 30px #ff0000);
             animation: ninjaMove 15s ease-in-out infinite;
+            z-index: -1;
         }
         
         @keyframes bloodWave {
@@ -85,114 +87,106 @@
             75% { transform: translateX(-15px) rotate(5deg); opacity: 0.5; }
         }
         
-        /* CAM EFEKT */
-        .glass-blood {
+        /* DOXBİN PANELİ TASARIM */
+        .glass-panel {
             background: rgba(20, 8, 8, 0.85);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
             border: 1px solid #8b0000;
             box-shadow: 0 8px 32px rgba(139, 0, 0, 0.4);
+            border-radius: 24px;
         }
         
-        /* DOXBİN LOGO */
-        .doxbin-logo {
-            font-size: 32px;
+        .doxbin-title {
+            font-size: 36px;
             font-weight: 900;
             background: linear-gradient(135deg, #ff4d4d, #8b0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 20px #ff0000);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
         }
         
-        /* SONUÇ KARTLARI */
-        .result-card {
+        /* VERİ KARTLARI */
+        .data-card {
             background: linear-gradient(145deg, #1e1212, #140a0a);
-            border-radius: 24px;
-            padding: 20px;
-            margin-bottom: 16px;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 14px;
             border: 1px solid #8b0000;
-            box-shadow: 0 10px 30px -10px #ff0000;
+            box-shadow: 0 10px 25px -10px #ff0000;
         }
         
-        .result-header {
+        .data-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #8b0000;
         }
         
-        .result-icon {
-            width: 50px;
-            height: 50px;
+        .data-icon {
+            width: 45px;
+            height: 45px;
             background: rgba(139, 0, 0, 0.2);
-            border-radius: 18px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #ff4d4d;
-            font-size: 24px;
-            border: 1px solid #ff4d4d;
+            font-size: 22px;
         }
         
-        .result-title {
-            font-size: 20px;
+        .data-title {
+            font-size: 18px;
             font-weight: 700;
             color: #ffb3b3;
-            text-shadow: 0 0 10px #ff0000;
         }
         
         .data-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
         }
         
         .data-item {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 16px;
-            padding: 12px 15px;
+            border-radius: 12px;
+            padding: 10px 12px;
             border-left: 3px solid #ff4d4d;
         }
         
         .data-label {
-            font-size: 11px;
+            font-size: 10px;
             color: #ff9999;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
         }
         
         .data-value {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: #fff;
             word-break: break-word;
         }
         
-        .value-tc {
+        .tc-value {
             color: #ffd700;
             font-weight: 700;
-            text-shadow: 0 0 5px #ffd700;
         }
         
-        .value-gsm {
+        .gsm-value {
             color: #4ecdc4;
-            font-weight: 600;
-        }
-        
-        .value-banka {
-            color: #bf7af0;
-            font-weight: 600;
         }
         
         /* BUTONLAR */
-        .btn-blood {
+        .btn-primary {
             background: linear-gradient(135deg, #8b0000, #4a0000);
             border: 1px solid #ff4d4d;
             border-radius: 14px;
-            padding: 16px;
+            padding: 16px 20px;
             color: white;
             font-weight: 700;
             font-size: 16px;
@@ -201,24 +195,24 @@
             cursor: pointer;
         }
         
-        .btn-blood:active {
+        .btn-primary:active {
             transform: scale(0.97);
             background: #8b0000;
         }
         
-        .btn-outline-blood {
+        .btn-secondary {
             background: transparent;
             border: 1px solid #8b0000;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 8px 14px;
             color: #ff9999;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             transition: all 0.2s;
             cursor: pointer;
         }
         
-        .btn-outline-blood:active {
+        .btn-secondary:active {
             background: rgba(139, 0, 0, 0.2);
         }
         
@@ -226,11 +220,11 @@
         .input-blood {
             background: rgba(0, 0, 0, 0.5);
             border: 2px solid #8b0000;
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 16px;
             color: white;
             width: 100%;
-            font-size: 16px;
+            font-size: 15px;
         }
         
         .input-blood:focus {
@@ -239,11 +233,11 @@
             box-shadow: 0 0 25px #ff0000;
         }
         
-        /* MENÜ */
+        /* MENÜ ÖĞELERİ */
         .menu-item {
             background: rgba(139, 0, 0, 0.1);
             border: 1px solid #8b0000;
-            border-radius: 14px;
+            border-radius: 12px;
             padding: 14px;
             margin-bottom: 8px;
             color: #ffb3b3;
@@ -259,7 +253,7 @@
         }
         
         /* LOADER */
-        .loader-blood {
+        .loader {
             width: 50px;
             height: 50px;
             border: 4px solid rgba(139, 0, 0, 0.2);
@@ -299,47 +293,45 @@
 </head>
 <body>
     <!-- KANLI ARKAPLAN -->
-    <div class="blood-container">
-        <div class="blood-base"></div>
-        <div class="blood-layer"></div>
-        <div class="blood-drip"></div>
-        <div class="ninja"></div>
-    </div>
+    <div class="blood-bg"></div>
+    <div class="blood-overlay"></div>
+    <div class="blood-drips"></div>
+    <div class="ninja-shadow"></div>
 
     <!-- TELEGRAM POPUP -->
-    <div id="telegramPopup" class="fixed top-0 left-0 right-0 glass-blood telegram-popup py-3 px-5 flex items-center justify-between z-50" style="display: none;">
+    <div id="telegramPopup" class="fixed top-0 left-0 right-0 glass-panel telegram-popup py-3 px-5 flex items-center justify-between z-50" style="display: none;">
         <div class="flex items-center gap-3">
             <i class="fab fa-telegram text-2xl" style="color: #ff4d4d;"></i>
-            <span class="font-bold">🔥 @doxbinhack</span>
+            <span class="font-bold text-white">🔥 @doxbinhack</span>
         </div>
-        <a href="https://t.me/doxbinhack" target="_blank" class="btn-outline-blood text-xs">KATIL</a>
+        <a href="https://t.me/doxbinhack" target="_blank" class="btn-secondary text-xs">KATIL</a>
     </div>
 
-    <!-- GÜVENLİK -->
+    <!-- GÜVENLİK KATMANI -->
     <div id="security-layer" class="fixed inset-0 z-50 flex items-center justify-center" style="background: #0a0000;">
-        <div class="glass-blood p-8 rounded-3xl text-center max-w-sm w-11/12">
+        <div class="glass-panel p-8 text-center max-w-sm w-11/12">
             <i class="fas fa-shield-alt text-5xl mb-4" style="color: #ff4d4d;"></i>
-            <h2 class="text-2xl font-bold mb-2" style="color: #ffb3b3;">DOXBİN</h2>
-            <p class="mb-6 opacity-80">Kanlı doğrulama başlıyor...</p>
-            <button onclick="verifySecurity()" class="btn-blood">DOĞRULAMAYI BAŞLAT</button>
+            <h2 class="doxbin-title text-3xl mb-2">DOXBİN</h2>
+            <p class="mb-6 opacity-80 text-white">Güvenlik doğrulaması yapılıyor...</p>
+            <button onclick="verifySecurity()" class="btn-primary">DOĞRULAMAYI BAŞLAT</button>
         </div>
     </div>
 
     <!-- ANA UYGULAMA -->
     <div id="main-app" class="hidden h-full flex flex-col">
         <!-- NAVBAR -->
-        <nav class="glass-blood px-4 py-3 flex justify-between items-center">
+        <nav class="glass-panel px-4 py-3 flex justify-between items-center mx-3 mt-2">
             <button onclick="toggleMenu()" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                <i class="fas fa-bars" style="color: #ff4d4d;"></i>
+                <i class="fas fa-bars text-xl" style="color: #ff4d4d;"></i>
             </button>
-            <span class="doxbin-logo">DOXBİN</span>
+            <span class="doxbin-title text-2xl">DOXBİN</span>
             <a href="https://t.me/doxbinhack" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                <i class="fab fa-telegram" style="color: #ff4d4d;"></i>
+                <i class="fab fa-telegram text-xl" style="color: #ff4d4d;"></i>
             </a>
         </nav>
 
         <!-- MENÜ -->
-        <div id="sidebar" class="fixed top-0 left-0 h-full w-72 glass-blood z-40 transform -translate-x-full transition-transform p-5 overflow-y-auto">
+        <div id="sidebar" class="fixed top-0 left-0 h-full w-72 glass-panel z-40 transform -translate-x-full transition-transform p-5 overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <span class="font-bold text-lg" style="color: #ff4d4d;">⚔️ SORGULAR</span>
                 <button onclick="toggleMenu()" class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
@@ -349,30 +341,30 @@
             <div id="menu-items" class="space-y-2"></div>
         </div>
 
-        <!-- İÇERİK -->
+        <!-- ANA İÇERİK -->
         <main class="flex-1 overflow-y-auto p-4">
             <!-- SORGU KARTI -->
-            <div class="glass-blood rounded-2xl p-5 mb-4">
+            <div class="glass-panel p-5 mb-4">
                 <h1 id="service-title" class="text-center font-bold text-xl mb-1" style="color: #ffb3b3;">TC Sorgu</h1>
                 <p id="service-desc" class="text-center text-sm opacity-70 mb-4">TC Kimlik Numarası Girin</p>
                 
                 <div id="input-container">
                     <input type="text" id="input-tc" placeholder="TC KİMLİK NO" class="input-blood mb-3" value="48763804886">
-                    <button onclick="runQuery()" class="btn-blood">
+                    <button onclick="runQuery()" class="btn-primary">
                         <i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT
                     </button>
                 </div>
             </div>
 
-            <!-- SONUÇ -->
+            <!-- SONUÇ BÖLÜMÜ -->
             <div id="result-container" style="display: none;">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="font-bold flex items-center gap-2" style="color: #ffb3b3;">
                         <i class="fas fa-skull" style="color: #ff4d4d;"></i> KANLI SONUÇ
                     </h3>
                     <div class="flex gap-2">
-                        <button onclick="copyResult()" class="btn-outline-blood"><i class="fas fa-copy mr-1"></i>KOPYALA</button>
-                        <button onclick="downloadResult()" class="btn-outline-blood"><i class="fas fa-download mr-1"></i>İNDİR</button>
+                        <button onclick="copyResult()" class="btn-secondary"><i class="fas fa-copy mr-1"></i>KOPYALA</button>
+                        <button onclick="downloadResult()" class="btn-secondary"><i class="fas fa-download mr-1"></i>İNDİR</button>
                     </div>
                 </div>
                 <div id="output-box"></div>
@@ -381,6 +373,18 @@
     </div>
 
     <script>
+        // ========== GÜÇLÜ USER-AGENT'LER ==========
+        const USER_AGENTS = [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+            "Mozilla/5.0 (iPad; CPU OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0"
+        ];
+
         // TELEGRAM POPUP
         setTimeout(() => {
             document.getElementById('telegramPopup').style.display = 'flex';
@@ -394,6 +398,7 @@
             { id: 'tc', name: '🔍 TC Sorgu', url: 'https://apiservices.alwaysdata.net/apiservices/tc.php?tc=', inputs: ['tc'] },
             { id: 'tcpro', name: '💎 TC Pro', url: 'https://apiservices.alwaysdata.net/apiservices/tcpro.php?tc=', inputs: ['tc'] },
             { id: 'adsoyad', name: '📇 Ad Soyad', url: 'https://apiservices.alwaysdata.net/apiservices/adsoyad.php?', inputs: ['ad', 'soyad'] },
+            { id: 'adsoyadpro', name: '⚡ Ad Soyad Pro', url: 'https://apiservices.alwaysdata.net/apiservices/adsoyadpro.php?', inputs: ['ad', 'soyad', 'il'] },
             { id: 'aile', name: '👪 Aile', url: 'https://apiservices.alwaysdata.net/apiservices/aile.php?tc=', inputs: ['tc'] },
             { id: 'ailepro', name: '👑 Aile Pro', url: 'https://apiservices.alwaysdata.net/apiservices/ailepro.php?tc=', inputs: ['tc'] },
             { id: 'kardes', name: '🤝 Kardeş', url: 'https://apiservices.alwaysdata.net/apiservices/kardes.php?tc=', inputs: ['tc'] },
@@ -408,7 +413,7 @@
         // GÜVENLİK
         function verifySecurity() {
             const btn = event.target.closest('button');
-            btn.innerHTML = '<div class="loader-blood"></div>';
+            btn.innerHTML = '<div class="loader"></div>';
             
             setTimeout(() => {
                 document.getElementById('security-layer').style.display = 'none';
@@ -453,7 +458,7 @@
             });
 
             const btn = document.createElement('button');
-            btn.className = "btn-blood";
+            btn.className = "btn-primary";
             btn.innerHTML = '<i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT';
             btn.onclick = runQuery;
             container.appendChild(btn);
@@ -461,12 +466,17 @@
             document.getElementById('result-container').style.display = 'none';
         }
 
-        // SORGU ÇALIŞTIR - RENDER STATIC SITE'DE ÇALIŞIR
+        // Rastgele User-Agent seç
+        function getRandomUserAgent() {
+            return USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
+        }
+
+        // SORGU ÇALIŞTIR
         async function runQuery() {
             const out = document.getElementById('output-box');
             const resCont = document.getElementById('result-container');
             resCont.style.display = 'block';
-            out.innerHTML = '<div class="loader-blood"></div>';
+            out.innerHTML = '<div class="loader"></div>';
 
             let apiUrl = currentService.url;
             if (currentService.inputs.length === 1) {
@@ -479,9 +489,17 @@
                 apiUrl += params.join('&');
             }
 
+            const randomUA = getRandomUserAgent();
+            console.log("Kullanılan User-Agent:", randomUA);
+            console.log("API URL:", apiUrl);
+
             try {
-                // CORS proxy KULLANMA - direkt istek
-                const response = await fetch(apiUrl);
+                // Render'da direkt fetch çalışır
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'User-Agent': randomUA
+                    }
+                });
                 const data = await response.text();
                 
                 let html = '<div class="space-y-4">';
@@ -489,22 +507,21 @@
                 try {
                     const json = JSON.parse(data);
                     
-                    // Gereksiz alanları sil
+                    // Gereksiz alanları temizle
                     delete json.developer;
                     delete json.version;
                     delete json.success;
                     delete json.message;
                     delete json.timestamp;
                     
-                    // KARDEŞ SORGU ÖZEL
+                    // KARDEŞ SORGU
                     if (json.kardesler && Array.isArray(json.kardesler)) {
-                        html += `<div class="result-card"><div class="result-header"><div class="result-icon"><i class="fas fa-users"></i></div><div class="result-title">${json.toplam_kardes || json.kardesler.length} KARDEŞ</div></div>`;
-                        
+                        html += `<div class="data-card"><div class="data-header"><div class="data-icon"><i class="fas fa-users"></i></div><div class="data-title">${json.toplam_kardes || json.kardesler.length} KARDEŞ</div></div>`;
                         json.kardesler.forEach((kardes, idx) => {
-                            html += `<div style="margin-bottom:15px; padding:10px; background:rgba(139,0,0,0.1); border-radius:12px;">`;
-                            html += `<div style="color:#ff9999; margin-bottom:8px;">👤 KARDEŞ ${idx+1}</div>`;
+                            html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
+                            html += `<div style="color:#ff9999; margin-bottom:10px;">👤 KARDEŞ ${idx+1}</div>`;
                             Object.entries(kardes).forEach(([k,v]) => {
-                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'value-tc':''}">${v}</span></div>`;
+                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':(k.includes('GSM')?'gsm-value':'')}">${v}</span></div>`;
                             });
                             html += `</div>`;
                         });
@@ -512,12 +529,12 @@
                     }
                     // AİLE SORGU
                     else if (json.aile_bilgileri?.kayitlar) {
-                        html += `<div class="result-card"><div class="result-header"><div class="result-icon"><i class="fas fa-users"></i></div><div class="result-title">AİLE ÜYELERİ</div></div>`;
+                        html += `<div class="data-card"><div class="data-header"><div class="data-icon"><i class="fas fa-users"></i></div><div class="data-title">AİLE ÜYELERİ</div></div>`;
                         json.aile_bilgileri.kayitlar.forEach((uye, idx) => {
-                            html += `<div style="margin-bottom:15px; padding:10px; background:rgba(139,0,0,0.1); border-radius:12px;">`;
-                            html += `<div style="color:#ff9999; margin-bottom:8px;">👤 ${uye.ADI || ''} ${uye.SOYADI || ''}</div>`;
+                            html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
+                            html += `<div style="color:#ff9999; margin-bottom:10px;">👤 ${uye.ADI || ''} ${uye.SOYADI || ''}</div>`;
                             Object.entries(uye).forEach(([k,v]) => {
-                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'value-tc':''}">${v}</span></div>`;
+                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':''}">${v}</span></div>`;
                             });
                             html += `</div>`;
                         });
@@ -525,45 +542,49 @@
                     }
                     // IBAN SORGU
                     else if (json.data) {
-                        html += '<div class="result-card">';
-                        html += '<div class="result-header"><div class="result-icon"><i class="fas fa-university"></i></div><div class="result-title">IBAN BİLGİLERİ</div></div>';
+                        html += '<div class="data-card">';
+                        html += '<div class="data-header"><div class="data-icon"><i class="fas fa-university"></i></div><div class="data-title">IBAN BİLGİLERİ</div></div>';
                         Object.entries(json.data).forEach(([k,v]) => {
                             if(v && typeof v !== 'object') {
-                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('iban')?'value-banka':''}">${v}</span></div>`;
+                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value">${v}</span></div>`;
                             }
                         });
                         html += '</div>';
                     }
                     // TC GSM
                     else if (json.gsmler) {
-                        html += '<div class="result-card">';
-                        html += `<div class="result-header"><div class="result-icon"><i class="fas fa-phone-alt"></i></div><div class="result-title">TC: ${json.tc || ''}</div></div>`;
+                        html += '<div class="data-card">';
+                        html += `<div class="data-header"><div class="data-icon"><i class="fas fa-phone-alt"></i></div><div class="data-title">TC: ${json.tc || ''}</div></div>`;
                         json.gsmler.forEach(gsm => {
-                            html += `<div class="data-item"><span class="data-label">GSM:</span> <span class="data-value value-gsm">${gsm}</span></div>`;
+                            html += `<div class="data-item"><span class="data-label">GSM:</span> <span class="data-value gsm-value">${gsm}</span></div>`;
                         });
                         html += '</div>';
                     }
                     // DİĞER
                     else {
-                        html += '<div class="result-card">';
-                        html += '<div class="result-header"><div class="result-icon"><i class="fas fa-database"></i></div><div class="result-title">SORGÜ SONUCU</div></div>';
+                        html += '<div class="data-card">';
+                        html += '<div class="data-header"><div class="data-icon"><i class="fas fa-database"></i></div><div class="data-title">SORGÜ SONUCU</div></div>';
                         Object.entries(json).forEach(([k,v]) => {
                             if(v && typeof v !== 'object') {
-                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'value-tc':''}">${v}</span></div>`;
+                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':''}">${v}</span></div>`;
                             }
                         });
                         html += '</div>';
                     }
                     
                 } catch (e) {
-                    html += `<div class="result-card"><pre style="color:#ff9999;">${data}</pre></div>`;
+                    html += `<div class="data-card"><pre style="color:#ff9999; white-space:pre-wrap;">${data}</pre></div>`;
                 }
                 
                 html += '</div>';
                 out.innerHTML = html;
                 
             } catch (error) {
-                out.innerHTML = `<div class="glass-blood p-6 text-center text-red-400">Hata: ${error.message}</div>`;
+                out.innerHTML = `<div class="glass-panel p-6 text-center" style="color:#ff4d4d;">
+                    <i class="fas fa-exclamation-triangle text-4xl mb-3"></i>
+                    <p class="text-lg font-bold">BAĞLANTI HATASI</p>
+                    <p class="text-sm opacity-70 mt-2">${error.message}</p>
+                </div>`;
             }
         }
 
