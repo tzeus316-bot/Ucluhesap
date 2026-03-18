@@ -385,7 +385,7 @@
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0"
         ];
 
-        // ========== API LİSTESİ - TÜM APİLER AKTİF ==========
+        // ========== API LİSTESİ - HTTPS İLE DÜZELTİLDİ ==========
         const API_BASE = 'https://apiservices.alwaysdata.net/apiservices/';
         
         const services = [
@@ -549,19 +549,27 @@
 
         // JSON temizleme
         function cleanJson(obj) {
+            if (typeof obj !== 'object' || obj === null) return obj;
+            
+            if (Array.isArray(obj)) {
+                return obj.map(item => cleanJson(item)).filter(item => item !== null && item !== '');
+            }
+            
             const clean = {};
             Object.entries(obj).forEach(([key, value]) => {
-                if (!key.toLowerCase().includes('developer') && 
-                    !key.toLowerCase().includes('version') && 
-                    !key.toLowerCase().includes('success') && 
-                    !key.toLowerCase().includes('message') && 
-                    !key.toLowerCase().includes('timestamp') &&
+                const keyLower = key.toLowerCase();
+                if (!keyLower.includes('developer') && 
+                    !keyLower.includes('version') && 
+                    !keyLower.includes('success') && 
+                    !keyLower.includes('message') && 
+                    !keyLower.includes('timestamp') &&
+                    !keyLower.includes('status') &&
                     value !== null && 
                     value !== '') {
                     
                     if (typeof value === 'object') {
                         const nested = cleanJson(value);
-                        if (Object.keys(nested).length > 0) {
+                        if (nested && Object.keys(nested).length > 0) {
                             clean[key] = nested;
                         }
                     } else {
@@ -572,7 +580,7 @@
             return clean;
         }
 
-        // SORGU ÇALIŞTIR
+        // SORGU ÇALIŞTIR - HATA AYIKLAMALI
         async function runQuery() {
             const out = document.getElementById('output-box');
             const resCont = document.getElementById('result-container');
@@ -595,22 +603,39 @@
             console.log("API URL:", apiUrl);
 
             try {
+                // HTTPS üzerinden istek
                 const response = await fetch(apiUrl, {
+                    method: 'GET',
                     headers: {
                         'User-Agent': randomUA,
-                        'Accept': 'application/json, text/plain, */*'
-                    }
+                        'Accept': 'application/json, text/plain, */*',
+                        'Origin': window.location.origin
+                    },
+                    mode: 'cors'
                 });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP Hata! Status: ${response.status}`);
+                }
+                
                 const data = await response.text();
+                console.log("Gelen veri (ham):", data);
                 
                 let html = '<div class="space-y-4">';
                 
                 try {
                     const rawJson = JSON.parse(data);
-                    const json = cleanJson(rawJson);
+                    console.log("Gelen veri (JSON):", rawJson);
                     
+                    const json = cleanJson(rawJson);
+                    console.log("Temizlenmiş JSON:", json);
+                    
+                    // Eğer hiç veri yoksa
+                    if (Object.keys(json).length === 0) {
+                        html += `<div class="glass-panel p-6 text-center">Veri bulunamadı</div>`;
+                    }
                     // KARDEŞ SORGU
-                    if (json.kardesler && Array.isArray(json.kardesler)) {
+                    else if (json.kardesler && Array.isArray(json.kardesler)) {
                         html += `<div class="data-card"><div class="data-header"><div class="data-icon"><i class="fas fa-users"></i></div><div class="data-title">${json.toplam_kardes || json.kardesler.length} KARDEŞ</div></div>`;
                         json.kardesler.forEach((kardes, idx) => {
                             html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
@@ -681,6 +706,7 @@
                     }
                     
                 } catch (e) {
+                    console.error("JSON parse hatası:", e);
                     // JSON değilse direkt göster
                     html += `<div class="data-card"><pre style="color:#ff9999; white-space:pre-wrap; font-size:12px;">${data}</pre></div>`;
                 }
@@ -689,10 +715,12 @@
                 out.innerHTML = html;
                 
             } catch (error) {
+                console.error("Fetch hatası:", error);
                 out.innerHTML = `<div class="glass-panel p-6 text-center" style="color:#ff4d4d;">
                     <i class="fas fa-exclamation-triangle text-4xl mb-3"></i>
                     <p class="text-lg font-bold">BAĞLANTI HATASI</p>
                     <p class="text-sm opacity-70 mt-2">${error.message}</p>
+                    <p class="text-xs opacity-50 mt-4">API: ${apiUrl}</p>
                 </div>`;
             }
         }
@@ -717,6 +745,12 @@
             if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) e.preventDefault();
         });
         document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Sayfa yüklendiğinde konsola bilgi yaz
+        window.onload = function() {
+            console.log("DOXBİN Panel yüklendi");
+            console.log("API Base URL:", API_BASE);
+        };
     </script>
 </body>
 </html>
