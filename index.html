@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DOXBİN | SORGÜ PANELİ</title>
+    <title>DOXBİN | HIZLI SORGÜ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,7 +22,7 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
         
-        /* KANLI ARKAPLAN */
+        /* KANLI ARKAPLAN - HIZLI */
         .blood-bg {
             position: fixed;
             top: 0;
@@ -39,159 +39,72 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(180,0,0,0.3) 0%, transparent 40%),
-                        radial-gradient(circle at 70% 60%, rgba(120,0,0,0.2) 0%, transparent 45%);
+            background: radial-gradient(circle at 30% 40%, rgba(180,0,0,0.2) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(120,0,0,0.15) 0%, transparent 45%);
             animation: bloodWave 8s ease-in-out infinite;
             z-index: -1;
         }
         
-        .blood-drips {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(150,0,0,0.1) 50px, rgba(150,0,0,0.1) 100px);
-            animation: bloodFlow 20s linear infinite;
-            z-index: -1;
-        }
-        
-        .ninja-shadow {
-            position: fixed;
-            bottom: 5%;
-            right: 5%;
-            width: 200px;
-            height: 250px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250"><path d="M100,30 L120,70 L150,60 L160,100 L130,130 L140,180 L110,210 L100,220 L90,210 L60,180 L70,130 L40,100 L50,60 L80,70 Z" fill="%238b0000" opacity="0.3"/><circle cx="100" cy="40" r="15" fill="%23660000" opacity="0.5"/><path d="M80,180 L120,180 L130,230 L70,230 Z" fill="%238b0000" opacity="0.3"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0.4;
-            filter: drop-shadow(0 0 30px #ff0000);
-            animation: ninjaMove 15s ease-in-out infinite;
-            z-index: -1;
-        }
-        
         @keyframes bloodWave {
-            0%,100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+            0%,100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
         }
         
-        @keyframes bloodFlow {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-        
-        @keyframes ninjaMove {
-            0%,100% { transform: translateX(0) rotate(0deg); opacity: 0.4; }
-            25% { transform: translateX(-30px) rotate(-5deg); opacity: 0.6; }
-            75% { transform: translateX(-15px) rotate(5deg); opacity: 0.5; }
-        }
-        
-        /* DOXBİN PANELİ TASARIM */
+        /* HIZLI GLASS */
         .glass-panel {
-            background: rgba(20, 8, 8, 0.85);
-            backdrop-filter: blur(15px);
+            background: rgba(15, 8, 8, 0.8);
+            backdrop-filter: blur(10px);
             border: 1px solid #8b0000;
-            box-shadow: 0 8px 32px rgba(139, 0, 0, 0.4);
-            border-radius: 24px;
+            border-radius: 20px;
+            transition: all 0.2s;
         }
         
+        /* DOXBİN LOGO */
         .doxbin-title {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
             background: linear-gradient(135deg, #ff4d4d, #8b0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px #ff0000);
-            letter-spacing: 4px;
-            text-transform: uppercase;
+            filter: drop-shadow(0 0 15px #ff0000);
+            letter-spacing: 3px;
         }
         
-        /* VERİ KARTLARI */
-        .data-card {
-            background: linear-gradient(145deg, #1e1212, #140a0a);
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 14px;
-            border: 1px solid #8b0000;
-            box-shadow: 0 10px 25px -10px #ff0000;
-        }
-        
-        .data-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #8b0000;
-        }
-        
-        .data-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(139, 0, 0, 0.2);
+        /* HIZLI INPUT */
+        .input-blood {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #8b0000;
             border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ff4d4d;
-            font-size: 22px;
+            padding: 14px 16px;
+            color: white;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.2s;
         }
         
-        .data-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #ffb3b3;
+        .input-blood:focus {
+            outline: none;
+            border-color: #ff4d4d;
+            box-shadow: 0 0 20px #ff0000;
+            background: rgba(0, 0, 0, 0.7);
         }
         
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        
-        .data-item {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 10px 12px;
-            border-left: 3px solid #ff4d4d;
-        }
-        
-        .data-label {
-            font-size: 10px;
-            color: #ff9999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 3px;
-        }
-        
-        .data-value {
+        .input-blood::placeholder {
+            color: rgba(255, 255, 255, 0.3);
             font-size: 14px;
-            font-weight: 600;
-            color: #fff;
-            word-break: break-word;
         }
         
-        .tc-value {
-            color: #ffd700;
-            font-weight: 700;
-        }
-        
-        .gsm-value {
-            color: #4ecdc4;
-        }
-        
-        /* BUTONLAR */
+        /* HIZLI BUTON */
         .btn-primary {
             background: linear-gradient(135deg, #8b0000, #4a0000);
             border: 1px solid #ff4d4d;
             border-radius: 14px;
-            padding: 16px 20px;
+            padding: 14px 20px;
             color: white;
             font-weight: 700;
             font-size: 16px;
             width: 100%;
-            transition: all 0.2s;
+            transition: all 0.15s;
             cursor: pointer;
         }
         
@@ -204,11 +117,11 @@
             background: transparent;
             border: 1px solid #8b0000;
             border-radius: 10px;
-            padding: 8px 14px;
+            padding: 6px 12px;
             color: #ff9999;
             font-weight: 600;
             font-size: 12px;
-            transition: all 0.2s;
+            transition: all 0.15s;
             cursor: pointer;
         }
         
@@ -216,73 +129,95 @@
             background: rgba(139, 0, 0, 0.2);
         }
         
-        /* INPUT */
-        .input-blood {
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid #8b0000;
-            border-radius: 14px;
-            padding: 16px;
-            color: white;
-            width: 100%;
-            font-size: 15px;
-        }
-        
-        .input-blood:focus {
-            outline: none;
-            border-color: #ff4d4d;
-            box-shadow: 0 0 25px #ff0000;
-        }
-        
-        /* MENÜ ÖĞELERİ */
+        /* HIZLI MENÜ */
         .menu-item {
             background: rgba(139, 0, 0, 0.1);
             border: 1px solid #8b0000;
             border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 8px;
+            padding: 12px 14px;
+            margin-bottom: 6px;
             color: #ffb3b3;
             font-weight: 500;
             width: 100%;
             text-align: left;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s;
+            font-size: 14px;
         }
         
         .menu-item:active {
             background: rgba(139, 0, 0, 0.3);
         }
         
-        /* LOADER */
+        /* HIZLI SONUÇ KARTI */
+        .result-card {
+            background: linear-gradient(145deg, #1a0f0f, #120808);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 1px solid #8b0000;
+        }
+        
+        .data-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-left: 3px solid #ff4d4d;
+        }
+        
+        .data-label {
+            font-size: 10px;
+            color: #ff9999;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        
+        .data-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            word-break: break-word;
+        }
+        
+        .tc-value {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        /* LOADER - HIZLI */
         .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(139, 0, 0, 0.2);
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(139, 0, 0, 0.2);
             border-top-color: #ff0000;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 30px auto;
+            animation: spin 0.6s linear infinite;
+            margin: 20px auto;
         }
         
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
         
-        /* SCROLLBAR */
+        /* SCROLLBAR - HIZLI */
         ::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
         }
         ::-webkit-scrollbar-track {
             background: #1a0a0a;
         }
         ::-webkit-scrollbar-thumb {
             background: #8b0000;
-            border-radius: 5px;
+            border-radius: 4px;
         }
         
-        /* TELEGRAM POPUP */
+        /* TELEGRAM POPUP - HIZLI */
         .telegram-popup {
             animation: slideDown 0.3s ease;
             border-bottom: 3px solid #ff0000;
+            background: rgba(20, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
         }
         
         @keyframes slideDown {
@@ -295,76 +230,74 @@
     <!-- KANLI ARKAPLAN -->
     <div class="blood-bg"></div>
     <div class="blood-overlay"></div>
-    <div class="blood-drips"></div>
-    <div class="ninja-shadow"></div>
 
     <!-- TELEGRAM POPUP -->
-    <div id="telegramPopup" class="fixed top-0 left-0 right-0 glass-panel telegram-popup py-3 px-5 flex items-center justify-between z-50" style="display: none;">
-        <div class="flex items-center gap-3">
-            <i class="fab fa-telegram text-2xl" style="color: #ff4d4d;"></i>
-            <span class="font-bold text-white">🔥 @doxbinhack</span>
+    <div id="telegramPopup" class="fixed top-0 left-0 right-0 telegram-popup py-2 px-4 flex items-center justify-between z-50" style="display: none;">
+        <div class="flex items-center gap-2">
+            <i class="fab fa-telegram text-xl" style="color: #ff4d4d;"></i>
+            <span class="font-bold text-sm text-white">@doxbinhack</span>
         </div>
-        <a href="https://t.me/doxbinhack" target="_blank" class="btn-secondary text-xs">KATIL</a>
+        <a href="https://t.me/doxbinhack" target="_blank" class="btn-secondary text-xs py-1 px-3">KATIL</a>
     </div>
 
     <!-- GÜVENLİK KATMANI -->
     <div id="security-layer" class="fixed inset-0 z-50 flex items-center justify-center" style="background: #0a0000;">
-        <div class="glass-panel p-8 text-center max-w-sm w-11/12">
-            <i class="fas fa-shield-alt text-5xl mb-4" style="color: #ff4d4d;"></i>
-            <h2 class="doxbin-title text-3xl mb-2">DOXBİN</h2>
-            <p class="mb-6 opacity-80 text-white">Güvenlik doğrulaması yapılıyor...</p>
-            <button onclick="verifySecurity()" class="btn-primary">DOĞRULAMAYI BAŞLAT</button>
+        <div class="glass-panel p-6 text-center max-w-xs w-11/12">
+            <i class="fas fa-shield-alt text-4xl mb-3" style="color: #ff4d4d;"></i>
+            <h2 class="doxbin-title text-2xl mb-1">DOXBİN</h2>
+            <p class="mb-4 text-xs opacity-70 text-white">Güvenlik doğrulaması</p>
+            <button onclick="verifySecurity()" class="btn-primary text-sm py-3">DOĞRULAMAYI BAŞLAT</button>
         </div>
     </div>
 
     <!-- ANA UYGULAMA -->
     <div id="main-app" class="hidden h-full flex flex-col">
         <!-- NAVBAR -->
-        <nav class="glass-panel px-4 py-3 flex justify-between items-center mx-3 mt-2">
-            <button onclick="toggleMenu()" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                <i class="fas fa-bars text-xl" style="color: #ff4d4d;"></i>
+        <nav class="glass-panel mx-3 mt-2 px-4 py-2 flex justify-between items-center">
+            <button onclick="toggleMenu()" class="w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                <i class="fas fa-bars text-lg" style="color: #ff4d4d;"></i>
             </button>
-            <span class="doxbin-title text-2xl">DOXBİN</span>
-            <a href="https://t.me/doxbinhack" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                <i class="fab fa-telegram text-xl" style="color: #ff4d4d;"></i>
+            <span class="doxbin-title text-xl">DOXBİN</span>
+            <a href="https://t.me/doxbinhack" target="_blank" class="w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                <i class="fab fa-telegram text-lg" style="color: #ff4d4d;"></i>
             </a>
         </nav>
 
         <!-- MENÜ -->
-        <div id="sidebar" class="fixed top-0 left-0 h-full w-72 glass-panel z-40 transform -translate-x-full transition-transform p-5 overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <span class="font-bold text-lg" style="color: #ff4d4d;">⚔️ SORGULAR</span>
-                <button onclick="toggleMenu()" class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                    <i class="fas fa-times" style="color: #ff4d4d;"></i>
+        <div id="sidebar" class="fixed top-0 left-0 h-full w-64 glass-panel z-40 transform -translate-x-full transition-transform p-4 overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-bold text-base" style="color: #ff4d4d;">⚔️ SORGULAR</span>
+                <button onclick="toggleMenu()" class="w-7 h-7 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                    <i class="fas fa-times text-sm" style="color: #ff4d4d;"></i>
                 </button>
             </div>
-            <div id="menu-items" class="space-y-2"></div>
+            <div id="menu-items" class="space-y-1"></div>
         </div>
 
         <!-- ANA İÇERİK -->
-        <main class="flex-1 overflow-y-auto p-4">
+        <main class="flex-1 overflow-y-auto p-3">
             <!-- SORGU KARTI -->
-            <div class="glass-panel p-5 mb-4">
-                <h1 id="service-title" class="text-center font-bold text-xl mb-1" style="color: #ffb3b3;">TC Sorgu</h1>
-                <p id="service-desc" class="text-center text-sm opacity-70 mb-4">TC Kimlik Numarası Girin</p>
+            <div class="glass-panel p-4 mb-3">
+                <h1 id="service-title" class="text-center font-bold text-lg mb-1" style="color: #ffb3b3;">TC Sorgu</h1>
+                <p id="service-desc" class="text-center text-xs opacity-60 mb-3">TC Kimlik Numarası Girin</p>
                 
                 <div id="input-container">
-                    <input type="text" id="input-tc" placeholder="TC KİMLİK NO" class="input-blood mb-3" value="48763804886">
-                    <button onclick="runQuery()" class="btn-primary">
-                        <i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT
+                    <input type="text" id="input-tc" placeholder="TC KİMLİK NO" class="input-blood mb-2">
+                    <button onclick="runQuery()" class="btn-primary text-sm py-3">
+                        <i class="fas fa-search mr-1"></i>SORGULA
                     </button>
                 </div>
             </div>
 
             <!-- SONUÇ BÖLÜMÜ -->
             <div id="result-container" style="display: none;">
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="font-bold flex items-center gap-2" style="color: #ffb3b3;">
-                        <i class="fas fa-skull" style="color: #ff4d4d;"></i> KANLI SONUÇ
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-bold flex items-center gap-1 text-sm" style="color: #ffb3b3;">
+                        <i class="fas fa-skull text-base" style="color: #ff4d4d;"></i> SONUÇ
                     </h3>
-                    <div class="flex gap-2">
-                        <button onclick="copyResult()" class="btn-secondary"><i class="fas fa-copy mr-1"></i>KOPYALA</button>
-                        <button onclick="downloadResult()" class="btn-secondary"><i class="fas fa-download mr-1"></i>İNDİR</button>
+                    <div class="flex gap-1">
+                        <button onclick="copyResult()" class="btn-secondary text-xs"><i class="fas fa-copy mr-1"></i>KOPYALA</button>
+                        <button onclick="downloadResult()" class="btn-secondary text-xs"><i class="fas fa-download mr-1"></i>İNDİR</button>
                     </div>
                 </div>
                 <div id="output-box"></div>
@@ -375,102 +308,32 @@
     <script>
         // ========== GÜÇLÜ USER-AGENT'LER ==========
         const USER_AGENTS = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
-            "Mozilla/5.0 (iPad; CPU OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0"
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Safari/605.1.15",
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148"
         ];
 
-        // ========== API LİSTESİ - HTTPS İLE DÜZELTİLDİ ==========
+        // ========== API LİSTESİ ==========
         const API_BASE = 'https://apiservices.alwaysdata.net/apiservices/';
         
         const services = [
-            { 
-                id: 'tc', 
-                name: '🔍 TC Sorgu', 
-                url: API_BASE + 'tc.php?tc=', 
-                inputs: ['tc'],
-                description: 'TC Kimlik Numarası ile kişi bilgileri'
-            },
-            { 
-                id: 'tcpro', 
-                name: '💎 TC Pro', 
-                url: API_BASE + 'tcpro.php?tc=', 
-                inputs: ['tc'],
-                description: 'Detaylı TC kimlik sorgulama'
-            },
-            { 
-                id: 'adsoyad', 
-                name: '📇 Ad Soyad', 
-                url: API_BASE + 'adsoyad.php?', 
-                inputs: ['ad', 'soyad'],
-                description: 'Ad ve soyad ile TC bulma'
-            },
-            { 
-                id: 'adsoyadpro', 
-                name: '⚡ Ad Soyad Pro', 
-                url: API_BASE + 'adsoyadpro.php?', 
-                inputs: ['ad', 'soyad', 'il'],
-                description: 'Ad, soyad ve il ile detaylı sorgu'
-            },
-            { 
-                id: 'aile', 
-                name: '👪 Aile Sorgu', 
-                url: API_BASE + 'aile.php?tc=', 
-                inputs: ['tc'],
-                description: 'TC ile aile bireylerini sorgulama'
-            },
-            { 
-                id: 'ailepro', 
-                name: '👑 Aile Pro', 
-                url: API_BASE + 'ailepro.php?tc=', 
-                inputs: ['tc'],
-                description: 'Detaylı aile sorgulama'
-            },
-            { 
-                id: 'kardes', 
-                name: '🤝 Kardeş Sorgu', 
-                url: API_BASE + 'kardes.php?tc=', 
-                inputs: ['tc'],
-                description: 'TC ile kardeşleri sorgulama'
-            },
-            { 
-                id: 'adres', 
-                name: '🏠 Adres Sorgu', 
-                url: API_BASE + 'adres.php?tc=', 
-                inputs: ['tc'],
-                description: 'TC ile adres bilgileri'
-            },
-            { 
-                id: 'iban', 
-                name: '💳 IBAN Sorgu', 
-                url: API_BASE + 'iban.php?iban=', 
-                inputs: ['iban'],
-                description: 'IBAN ile banka bilgileri'
-            },
-            { 
-                id: 'tcgsm', 
-                name: '📱 TC → GSM', 
-                url: API_BASE + 'tcgsm.php?tc=', 
-                inputs: ['tc'],
-                description: 'TC ile GSM numaraları'
-            },
-            { 
-                id: 'gsmtc', 
-                name: '🔄 GSM → TC', 
-                url: API_BASE + 'gsmtc.php?gsm=', 
-                inputs: ['gsm'],
-                description: 'GSM ile TC bulma'
-            }
+            { id: 'tc', name: '🔍 TC Sorgu', url: API_BASE + 'tc.php?tc=', inputs: ['tc'] },
+            { id: 'tcpro', name: '💎 TC Pro', url: API_BASE + 'tcpro.php?tc=', inputs: ['tc'] },
+            { id: 'adsoyad', name: '📇 Ad Soyad', url: API_BASE + 'adsoyad.php?', inputs: ['ad', 'soyad'] },
+            { id: 'adsoyadpro', name: '⚡ Ad Soyad Pro', url: API_BASE + 'adsoyadpro.php?', inputs: ['ad', 'soyad', 'il'] },
+            { id: 'aile', name: '👪 Aile', url: API_BASE + 'aile.php?tc=', inputs: ['tc'] },
+            { id: 'ailepro', name: '👑 Aile Pro', url: API_BASE + 'ailepro.php?tc=', inputs: ['tc'] },
+            { id: 'kardes', name: '🤝 Kardeş', url: API_BASE + 'kardes.php?tc=', inputs: ['tc'] },
+            { id: 'adres', name: '🏠 Adres', url: API_BASE + 'adres.php?tc=', inputs: ['tc'] },
+            { id: 'iban', name: '💳 IBAN', url: API_BASE + 'iban.php?iban=', inputs: ['iban'] },
+            { id: 'tcgsm', name: '📱 TC→GSM', url: API_BASE + 'tcgsm.php?tc=', inputs: ['tc'] },
+            { id: 'gsmtc', name: '🔄 GSM→TC', url: API_BASE + 'gsmtc.php?gsm=', inputs: ['gsm'] }
         ];
 
         let currentService = services[0];
 
-        // TELEGRAM POPUP
+        // TELEGRAM POPUP - 5 SN
         setTimeout(() => {
             document.getElementById('telegramPopup').style.display = 'flex';
             setTimeout(() => {
@@ -487,7 +350,7 @@
                 document.getElementById('security-layer').style.display = 'none';
                 document.getElementById('main-app').classList.remove('hidden');
                 initMenu();
-            }, 2000);
+            }, 1500);
         }
 
         // MENÜ
@@ -520,39 +383,31 @@
                 const inputEl = document.createElement('input');
                 inputEl.placeholder = input.toUpperCase() + ' GİRİN';
                 inputEl.id = `input-${input}`;
-                inputEl.className = "input-blood mb-3";
-                
-                // Örnek değerler
-                if(input === 'tc') inputEl.value = '48763804886';
-                if(input === 'ad') inputEl.value = 'ROKET';
-                if(input === 'soyad') inputEl.value = 'ATAR';
-                if(input === 'il') inputEl.value = 'İSTANBUL';
-                if(input === 'gsm') inputEl.value = '5315312472';
-                if(input === 'iban') inputEl.value = 'TR280006256953335759003718';
-                
+                inputEl.className = "input-blood mb-2";
+                inputEl.value = ''; // TAMAMEN BOŞ
                 container.appendChild(inputEl);
             });
 
             const btn = document.createElement('button');
-            btn.className = "btn-primary";
-            btn.innerHTML = '<i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT';
+            btn.className = "btn-primary text-sm py-3";
+            btn.innerHTML = '<i class="fas fa-search mr-1"></i>SORGULA';
             btn.onclick = runQuery;
             container.appendChild(btn);
             
             document.getElementById('result-container').style.display = 'none';
         }
 
-        // Rastgele User-Agent seç
+        // RASTGELE USER-AGENT
         function getRandomUserAgent() {
             return USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
         }
 
-        // JSON temizleme
+        // JSON TEMİZLE
         function cleanJson(obj) {
             if (typeof obj !== 'object' || obj === null) return obj;
             
             if (Array.isArray(obj)) {
-                return obj.map(item => cleanJson(item)).filter(item => item !== null && item !== '');
+                return obj.map(item => cleanJson(item)).filter(item => item !== null);
             }
             
             const clean = {};
@@ -563,9 +418,7 @@
                     !keyLower.includes('success') && 
                     !keyLower.includes('message') && 
                     !keyLower.includes('timestamp') &&
-                    !keyLower.includes('status') &&
-                    value !== null && 
-                    value !== '') {
+                    value !== null && value !== '') {
                     
                     if (typeof value === 'object') {
                         const nested = cleanJson(value);
@@ -580,10 +433,24 @@
             return clean;
         }
 
-        // SORGU ÇALIŞTIR - HATA AYIKLAMALI
+        // SORGU ÇALIŞTIR
         async function runQuery() {
             const out = document.getElementById('output-box');
             const resCont = document.getElementById('result-container');
+            
+            // Input kontrolü
+            let emptyInput = false;
+            currentService.inputs.forEach(i => {
+                if (!document.getElementById(`input-${i}`)?.value) {
+                    emptyInput = true;
+                }
+            });
+            
+            if (emptyInput) {
+                alert('Lütfen tüm alanları doldurun!');
+                return;
+            }
+            
             resCont.style.display = 'block';
             out.innerHTML = '<div class="loader"></div>';
 
@@ -598,130 +465,43 @@
                 apiUrl += params.join('&');
             }
 
-            const randomUA = getRandomUserAgent();
-            console.log("Kullanılan User-Agent:", randomUA);
-            console.log("API URL:", apiUrl);
-
             try {
-                // HTTPS üzerinden istek
                 const response = await fetch(apiUrl, {
-                    method: 'GET',
-                    headers: {
-                        'User-Agent': randomUA,
-                        'Accept': 'application/json, text/plain, */*',
-                        'Origin': window.location.origin
-                    },
-                    mode: 'cors'
+                    headers: { 'User-Agent': getRandomUserAgent() }
                 });
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP Hata! Status: ${response.status}`);
-                }
-                
                 const data = await response.text();
-                console.log("Gelen veri (ham):", data);
-                
-                let html = '<div class="space-y-4">';
+                let html = '<div>';
                 
                 try {
-                    const rawJson = JSON.parse(data);
-                    console.log("Gelen veri (JSON):", rawJson);
+                    const json = cleanJson(JSON.parse(data));
                     
-                    const json = cleanJson(rawJson);
-                    console.log("Temizlenmiş JSON:", json);
-                    
-                    // Eğer hiç veri yoksa
-                    if (Object.keys(json).length === 0) {
-                        html += `<div class="glass-panel p-6 text-center">Veri bulunamadı</div>`;
-                    }
-                    // KARDEŞ SORGU
-                    else if (json.kardesler && Array.isArray(json.kardesler)) {
-                        html += `<div class="data-card"><div class="data-header"><div class="data-icon"><i class="fas fa-users"></i></div><div class="data-title">${json.toplam_kardes || json.kardesler.length} KARDEŞ</div></div>`;
-                        json.kardesler.forEach((kardes, idx) => {
-                            html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
-                            html += `<div style="color:#ff9999; margin-bottom:10px;">👤 KARDEŞ ${idx+1}</div>`;
-                            Object.entries(kardes).forEach(([k,v]) => {
-                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':(k.includes('GSM')?'gsm-value':'')}">${v}</span></div>`;
+                    if (json.kardesler) {
+                        json.kardesler.forEach(k => {
+                            html += '<div class="result-card">';
+                            Object.entries(k).forEach(([k,v]) => {
+                                html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value ${k.includes('TC')?'tc-value':''}">${v}</div></div>`;
                             });
-                            html += `</div>`;
+                            html += '</div>';
                         });
-                        html += '</div>';
-                    }
-                    // AİLE SORGU
-                    else if (json.aile_bilgileri?.kayitlar) {
-                        html += `<div class="data-card"><div class="data-header"><div class="data-icon"><i class="fas fa-users"></i></div><div class="data-title">AİLE ÜYELERİ</div></div>`;
-                        json.aile_bilgileri.kayitlar.forEach((uye, idx) => {
-                            html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
-                            html += `<div style="color:#ff9999; margin-bottom:10px;">👤 ${uye.ADI || ''} ${uye.SOYADI || ''}</div>`;
-                            Object.entries(uye).forEach(([k,v]) => {
-                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':''}">${v}</span></div>`;
-                            });
-                            html += `</div>`;
-                        });
-                        html += '</div>';
-                    }
-                    // RESULTS ARRAY
-                    else if (json.results && Array.isArray(json.results)) {
-                        html += `<div class="data-card"><div class="data-header"><div class="data-icon"><i class="fas fa-list"></i></div><div class="data-title">SONUÇLAR</div></div>`;
-                        json.results.forEach((item, idx) => {
-                            html += `<div style="margin-bottom:15px; background:rgba(139,0,0,0.1); border-radius:12px; padding:12px;">`;
-                            html += `<div style="color:#ff9999; margin-bottom:10px;">📌 KAYIT ${idx+1}</div>`;
-                            Object.entries(item).forEach(([k,v]) => {
-                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':''}">${v}</span></div>`;
-                            });
-                            html += `</div>`;
-                        });
-                        html += '</div>';
-                    }
-                    // IBAN SORGU
-                    else if (json.data) {
-                        html += '<div class="data-card">';
-                        html += '<div class="data-header"><div class="data-icon"><i class="fas fa-university"></i></div><div class="data-title">IBAN BİLGİLERİ</div></div>';
-                        Object.entries(json.data).forEach(([k,v]) => {
-                            if(v && typeof v !== 'object') {
-                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value">${v}</span></div>`;
-                            }
-                        });
-                        html += '</div>';
-                    }
-                    // TC GSM
-                    else if (json.gsmler) {
-                        html += '<div class="data-card">';
-                        html += `<div class="data-header"><div class="data-icon"><i class="fas fa-phone-alt"></i></div><div class="data-title">TC: ${json.tc || ''}</div></div>`;
-                        json.gsmler.forEach(gsm => {
-                            html += `<div class="data-item"><span class="data-label">GSM:</span> <span class="data-value gsm-value">${gsm}</span></div>`;
-                        });
-                        html += '</div>';
-                    }
-                    // DİĞER
-                    else {
-                        html += '<div class="data-card">';
-                        html += '<div class="data-header"><div class="data-icon"><i class="fas fa-database"></i></div><div class="data-title">SORGÜ SONUCU</div></div>';
+                    } else {
+                        html += '<div class="result-card">';
                         Object.entries(json).forEach(([k,v]) => {
-                            if(v && typeof v !== 'object') {
-                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'tc-value':''}">${v}</span></div>`;
+                            if(typeof v !== 'object') {
+                                html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value ${k.includes('TC')?'tc-value':''}">${v}</div></div>`;
                             }
                         });
                         html += '</div>';
                     }
-                    
-                } catch (e) {
-                    console.error("JSON parse hatası:", e);
-                    // JSON değilse direkt göster
-                    html += `<div class="data-card"><pre style="color:#ff9999; white-space:pre-wrap; font-size:12px;">${data}</pre></div>`;
+                } catch {
+                    html += `<div class="result-card"><pre style="font-size:12px;">${data}</pre></div>`;
                 }
                 
                 html += '</div>';
                 out.innerHTML = html;
                 
             } catch (error) {
-                console.error("Fetch hatası:", error);
-                out.innerHTML = `<div class="glass-panel p-6 text-center" style="color:#ff4d4d;">
-                    <i class="fas fa-exclamation-triangle text-4xl mb-3"></i>
-                    <p class="text-lg font-bold">BAĞLANTI HATASI</p>
-                    <p class="text-sm opacity-70 mt-2">${error.message}</p>
-                    <p class="text-xs opacity-50 mt-4">API: ${apiUrl}</p>
-                </div>`;
+                out.innerHTML = `<div class="glass-panel p-4 text-center text-red-400">Hata: ${error.message}</div>`;
             }
         }
 
@@ -745,12 +525,6 @@
             if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) e.preventDefault();
         });
         document.addEventListener('contextmenu', e => e.preventDefault());
-
-        // Sayfa yüklendiğinde konsola bilgi yaz
-        window.onload = function() {
-            console.log("DOXBİN Panel yüklendi");
-            console.log("API Base URL:", API_BASE);
-        };
     </script>
 </body>
 </html>
