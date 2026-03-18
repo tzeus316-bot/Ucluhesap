@@ -34,22 +34,6 @@
             z-index: -2;
         }
 
-        /* GIF Arkaplan */
-        .gif-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUydXgzOGFqZmR6cW1nanNmYWF3M2RuaTA3Z3d4OW40Y2Nmam51b2xtNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IXnygGeB6LPPi/giphy.gif');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.08;
-            pointer-events: none;
-            z-index: 0;
-            border-radius: inherit;
-        }
-
         /* Cam Panel */
         .glass-panel {
             background: rgba(18, 10, 30, 0.7);
@@ -72,7 +56,6 @@
             border: 1px solid rgba(160, 100, 255, 0.4);
             box-shadow: 0 8px 35px rgba(120, 50, 200, 0.4);
             border-radius: 28px;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
             position: relative;
             overflow: hidden;
         }
@@ -127,7 +110,6 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 30px #8f5be0;
-            background: linear-gradient(135deg, #824cba, #4f3177);
         }
 
         .btn-secondary {
@@ -169,7 +151,7 @@
             color: white;
         }
 
-        /* Admin Menü Öğeleri (Altın renk) */
+        /* Admin Menü Öğeleri */
         .admin-menu-item {
             background: rgba(180, 130, 50, 0.15);
             border: 1px solid #ffdb7e;
@@ -188,7 +170,6 @@
             border-color: #ffd700;
             transform: translateX(4px);
             color: #fff0b5;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         /* Ayraç Çizgisi */
@@ -200,23 +181,6 @@
         }
 
         /* Yuvarlak GIF Kutusu */
-        .gif-circle-large {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid #b77dff;
-            box-shadow: 0 0 40px #a06eff;
-            margin: 0 auto 25px auto;
-            background: linear-gradient(135deg, #2a1a3a, #1a0f2a);
-        }
-
-        .gif-circle-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .gif-circle-small {
             width: 90px;
             height: 90px;
@@ -252,17 +216,14 @@
             50% { transform: scale(1); filter: drop-shadow(0 0 5px #3b82f6); }
         }
 
-        /* Sonuç Kartları */
+        /* ===== YENİ: VERİ KUTULARI (ARTIK SİYAH DEĞİL) ===== */
         .result-card {
-            background: rgba(20, 10, 30, 0.6);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(145deg, #1f1429, #140e1f);
             border-radius: 22px;
             padding: 18px;
             margin-bottom: 14px;
             border: 1px solid #7a59b3;
             transition: border-color 0.2s ease, transform 0.2s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .result-card:hover {
@@ -271,17 +232,49 @@
         }
 
         .data-item {
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(5px);
+            background: rgba(30, 15, 45, 0.7);
             border-radius: 12px;
-            padding: 10px 12px;
+            padding: 12px 15px;
             margin-bottom: 8px;
-            border-left: 3px solid #b266ff;
-            transition: border-left-width 0.15s ease;
+            border-left: 4px solid #b266ff;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .data-item:hover {
-            border-left-width: 5px;
+            background: rgba(50, 25, 75, 0.8);
+            border-left-width: 6px;
+            transform: translateX(2px);
+        }
+
+        .data-label {
+            font-size: 12px;
+            color: #c9b0ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .data-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            word-break: break-word;
+        }
+
+        /* TC değerleri için özel renk */
+        .tc-value {
+            color: #ffd700;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Ölüm tarihi kırmızı olsun */
+        .death-value {
+            color: #ff6b6b;
+            font-weight: 700;
         }
 
         /* Loader */
@@ -340,7 +333,6 @@
             max-width: 80%;
             padding: 10px 15px;
             border-radius: 18px;
-            position: relative;
             word-break: break-word;
             animation: messageAppear 0.2s ease-out;
         }
@@ -381,12 +373,6 @@
             font-size: 10px;
         }
 
-        .message-content {
-            color: white;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
         .chat-input-area {
             display: flex;
             gap: 10px;
@@ -401,7 +387,6 @@
             padding: 12px 18px;
             color: white;
             font-size: 14px;
-            transition: all 0.2s ease;
         }
 
         .chat-input:focus {
@@ -504,7 +489,6 @@
             color: #fff0b5;
         }
 
-        /* Kullanıcı Bilgi Kartı */
         .user-info-card {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 16px;
@@ -555,7 +539,7 @@
     <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" style="background: rgba(5,3,10,0.95); backdrop-filter: blur(10px);">
         <div class="glass-panel p-8 max-w-md w-11/12">
             <!-- YUVARLAK GIF KUTUSU -->
-            <div class="gif-circle-large">
+            <div class="gif-circle-small" style="width:120px; height:120px; margin:0 auto 20px auto;">
                 <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUydXgzOGFqZmR6cW1nanNmYWF3M2RuaTA3Z3d4OW40Y2Nmam51b2xtNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IXnygGeB6LPPi/giphy.gif" alt="DOXBİN Glow">
             </div>
             
@@ -605,7 +589,7 @@
         <!-- Duyuru Alanı -->
         <div id="announcement-container" class="mx-3 mt-2"></div>
 
-        <!-- Menü (sidebar) - KULLANICI PANELİ -->
+        <!-- Menü (sidebar) -->
         <div id="sidebar" class="fixed top-0 left-0 h-full w-72 glass-panel z-40 transform -translate-x-full transition-transform duration-300 p-5 overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <span class="font-bold text-lg" style="color:#b77dff; text-shadow: 0 0 8px #a06eff;">⚡ MENÜ</span>
@@ -614,7 +598,7 @@
                 </button>
             </div>
             
-            <!-- YUVARLAK GIF + DOXBİN YAZISI VE MAVİ TİK -->
+            <!-- YUVARLAK GIF + DOXBİN YAZISI -->
             <div class="flex flex-col items-center mb-6">
                 <div class="gif-circle-small">
                     <img src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUydXgzOGFqZmR6cW1nanNmYWF3M2RuaTA3Z3d4OW40Y2Nmam51b2xtNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IXnygGeB6LPPi/giphy.gif" alt="DOXBİN Glow">
@@ -625,7 +609,7 @@
                 </div>
             </div>
             
-            <!-- KULLANICI BİLGİLERİ (Giriş yapan kullanıcı) -->
+            <!-- KULLANICI BİLGİLERİ -->
             <div id="user-info-section" class="user-info-card hidden">
                 <div class="user-info-title">KULLANICI</div>
                 <div class="user-info-value" id="display-username">-</div>
@@ -633,11 +617,11 @@
                 <div class="user-info-value" id="display-member-since">-</div>
             </div>
             
-            <!-- SORGULAR BAŞLIĞI (TÜM KULLANICILAR GÖRÜR) -->
+            <!-- SORGULAR BAŞLIĞI -->
             <div class="font-bold text-md mb-2" style="color:#d1b5ff; text-shadow: 0 0 4px #a06eff;">SORGULAR</div>
             <div id="menu-items" class="space-y-2"></div>
             
-            <!-- SOHBET BUTONU (TÜM KULLANICILAR GÖRÜR) -->
+            <!-- SOHBET BUTONU -->
             <div class="mt-4">
                 <button onclick="showChat()" class="menu-item" style="background: linear-gradient(135deg, #3b1e5e, #1e0f2e);">
                     <i class="fas fa-comments mr-2" style="color: #b77dff;"></i>
@@ -648,30 +632,20 @@
             <!-- AYRAÇ ÇİZGİSİ -->
             <div class="divider"></div>
             
-            <!-- ADMIN PANELİ BÖLÜMÜ (SADECE ADMIN GÖRÜR) -->
+            <!-- ADMIN PANELİ (SADECE ADMIN) -->
             <div id="admin-menu-section" class="hidden">
                 <div class="font-bold text-md mb-2" style="color: #ffdb7e; text-shadow: 0 0 4px #ffaa00;">👑 ADMIN PANELİ</div>
-                <button onclick="showAdminPanel()" class="admin-menu-item">
-                    <i class="fas fa-crown mr-2"></i>Admin Paneli
-                </button>
-                <button onclick="showAnnouncements()" class="admin-menu-item">
-                    <i class="fas fa-bullhorn mr-2"></i>Duyuru Yönetimi
-                </button>
-                <button onclick="showStats()" class="admin-menu-item">
-                    <i class="fas fa-chart-line mr-2"></i>İstatistikler
-                </button>
-                <button onclick="showUsers()" class="admin-menu-item">
-                    <i class="fas fa-users mr-2"></i>Kullanıcılar
-                </button>
+                <button onclick="showAdminPanel()" class="admin-menu-item"><i class="fas fa-crown mr-2"></i>Admin Paneli</button>
+                <button onclick="showAnnouncements()" class="admin-menu-item"><i class="fas fa-bullhorn mr-2"></i>Duyuru Yönetimi</button>
+                <button onclick="showStats()" class="admin-menu-item"><i class="fas fa-chart-line mr-2"></i>İstatistikler</button>
+                <button onclick="showUsers()" class="admin-menu-item"><i class="fas fa-users mr-2"></i>Kullanıcılar</button>
             </div>
         </div>
 
         <!-- Ana İçerik -->
         <main class="flex-1 overflow-y-auto p-4">
-            <!-- Sorgu Kartı (TÜM KULLANICILAR GÖRÜR) -->
+            <!-- Sorgu Kartı -->
             <div id="query-section" class="query-panel p-5 mb-4 gentle-animation">
-                <!-- GIF Arkaplan -->
-                <div class="gif-background"></div>
                 <h1 id="service-title" class="text-center font-bold text-xl mb-1 relative z-10" style="color:#d1b5ff;">TC Sorgu</h1>
                 <p id="service-desc" class="text-center text-sm opacity-70 mb-4 relative z-10">TC Kimlik No Girin</p>
                 <div id="input-container" class="relative z-10">
@@ -680,30 +654,22 @@
                 </div>
             </div>
 
-            <!-- SOHBET ODASI (TÜM KULLANICILAR GÖRÜR) -->
+            <!-- SOHBET ODASI -->
             <div id="chat-section" class="query-panel p-5 mb-4 gentle-animation" style="display: none;">
-                <!-- GIF Arkaplan -->
-                <div class="gif-background"></div>
-                
                 <div class="relative z-10">
                     <h1 class="text-center font-bold text-xl mb-4" style="color:#d1b5ff;">
                         <i class="fas fa-comments mr-2" style="color: #b77dff;"></i>
                         SOHBET ODASI
                     </h1>
                     
-                    <!-- Online Kullanıcılar -->
                     <div class="online-users">
                         <div class="online-dot"></div>
                         <span style="color: #c7b0ff;" id="online-count">1</span>
                         <span style="color: #c7b0ff;">kullanıcı online</span>
                     </div>
                     
-                    <!-- Mesajlar Konteynırı -->
-                    <div id="chat-messages" class="chat-container">
-                        <!-- Mesajlar burada görünecek -->
-                    </div>
+                    <div id="chat-messages" class="chat-container"></div>
                     
-                    <!-- Mesaj Gönderme Alanı -->
                     <div class="chat-input-area">
                         <input type="text" id="chat-input" class="chat-input" placeholder="Mesajınızı yazın..." onkeypress="if(event.key==='Enter') sendMessage()">
                         <button onclick="sendMessage()" class="chat-send-btn">
@@ -713,7 +679,7 @@
                 </div>
             </div>
 
-            <!-- Sonuç (TÜM KULLANICILAR GÖRÜR) -->
+            <!-- Sonuç - VERİLER ARTIK GÖRÜNÜYOR -->
             <div id="result-container" style="display: none;">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="font-bold flex items-center gap-2" style="color:#d1b5ff;"><i class="fas fa-dragon" style="color:#b77dff;"></i> SONUÇ</h3>
@@ -725,38 +691,20 @@
                 <div id="output-box"></div>
             </div>
 
-            <!-- ADMIN PANELİ (SADECE ADMIN GÖRÜR) -->
+            <!-- ADMIN PANELİ -->
             <div id="admin-panel" style="display: none;"> 
                 <div class="glass-panel p-6">
                     <h2 class="text-2xl font-bold mb-6 flex items-center gap-2" style="color:#ffdb7e;"><i class="fas fa-crown"></i> ADMIN PANELİ</h2>
                     
-                    <!-- İstatistik kartları -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div class="stats-card">
-                            <i class="fas fa-users text-3xl mb-2" style="color:#b77dff;"></i>
-                            <div class="text-2xl font-bold" id="stats-users">0</div>
-                            <div class="text-sm opacity-70">Kullanıcı</div>
-                        </div>
-                        <div class="stats-card">
-                            <i class="fas fa-search text-3xl mb-2" style="color:#b77dff;"></i>
-                            <div class="text-2xl font-bold" id="stats-queries">0</div>
-                            <div class="text-sm opacity-70">Sorgu</div>
-                        </div>
-                        <div class="stats-card">
-                            <i class="fas fa-clock text-3xl mb-2" style="color:#b77dff;"></i>
-                            <div class="text-2xl font-bold" id="stats-online">0</div>
-                            <div class="text-sm opacity-70">Online</div>
-                        </div>
-                        <div class="stats-card">
-                            <i class="fas fa-comments text-3xl mb-2" style="color:#b77dff;"></i>
-                            <div class="text-2xl font-bold" id="stats-chat">0</div>
-                            <div class="text-sm opacity-70">Mesaj</div>
-                        </div>
+                        <div class="stats-card"><i class="fas fa-users text-3xl mb-2" style="color:#b77dff;"></i><div class="text-2xl font-bold" id="stats-users">0</div><div class="text-sm opacity-70">Kullanıcı</div></div>
+                        <div class="stats-card"><i class="fas fa-search text-3xl mb-2" style="color:#b77dff;"></i><div class="text-2xl font-bold" id="stats-queries">0</div><div class="text-sm opacity-70">Sorgu</div></div>
+                        <div class="stats-card"><i class="fas fa-clock text-3xl mb-2" style="color:#b77dff;"></i><div class="text-2xl font-bold" id="stats-online">0</div><div class="text-sm opacity-70">Online</div></div>
+                        <div class="stats-card"><i class="fas fa-comments text-3xl mb-2" style="color:#b77dff;"></i><div class="text-2xl font-bold" id="stats-chat">0</div><div class="text-sm opacity-70">Mesaj</div></div>
                     </div>
                     
                     <div class="mb-6"><canvas id="statsChart"></canvas></div>
                     
-                    <!-- Duyuru Yönetimi -->
                     <div class="mb-6">
                         <h3 class="text-xl font-bold mb-4" style="color:#d1b5ff;">📢 Duyuru Yönetimi</h3>
                         <textarea id="announcement-text" class="input-cyber" rows="3" placeholder="Duyuru metni..."></textarea>
@@ -767,13 +715,11 @@
                         <div id="announcement-list" class="space-y-2 mt-4 max-h-60 overflow-auto"></div>
                     </div>
                     
-                    <!-- Kullanıcı listesi -->
                     <div>
                         <h3 class="text-xl font-bold mb-4" style="color:#d1b5ff;">👥 Kullanıcı Listesi</h3>
                         <div id="user-list" class="space-y-2 max-h-60 overflow-auto"></div>
                     </div>
                     
-                    <!-- Sohbet Mesajları Yönetimi -->
                     <div class="mt-6">
                         <h3 class="text-xl font-bold mb-4" style="color:#d1b5ff;">💬 Sohbet Yönetimi</h3>
                         <button onclick="clearAllChat()" class="btn-primary" style="background: linear-gradient(135deg, #a040a0, #5a2d5a);">TÜM MESAJLARI TEMİZLE</button>
@@ -783,12 +729,9 @@
         </main>
     </div>
 
-    <!-- API'LERİ GİZLEMEK İÇİN GÜVENLİ KATMAN -->
-    <div id="api-layer" style="display: none;"></div>
-
     <script>
         // Hata ayıklama
-        function debugLog(msg, data) {
+        function debugLog(msg) {
             const p = document.getElementById('debugPanel');
             p.classList.remove('hidden');
             p.innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}`;
@@ -796,22 +739,18 @@
         }
 
         // ========== API'LER ==========
-        const API_CONFIG = (function() {
-            const API_BASE = 'https://apiservices.alwaysdata.net/apiservices/';
-            return {
-                tc: API_BASE + 'tc.php?tc=',
-                tcpro: API_BASE + 'tcpro.php?tc=',
-                adsoyad: API_BASE + 'adsoyad.php?',
-                adsoyadpro: API_BASE + 'adsoyadpro.php?',
-                aile: API_BASE + 'aile.php?tc=',
-                ailepro: API_BASE + 'ailepro.php?tc=',
-                adres: API_BASE + 'adres.php?tc=',
-                tcgsm: API_BASE + 'tcgsm.php?tc=',
-                gsmtc: API_BASE + 'gsmtc.php?gsm='
-            };
-        })();
+        const API_CONFIG = {
+            tc: 'https://apiservices.alwaysdata.net/apiservices/tc.php?tc=',
+            tcpro: 'https://apiservices.alwaysdata.net/apiservices/tcpro.php?tc=',
+            adsoyad: 'https://apiservices.alwaysdata.net/apiservices/adsoyad.php?',
+            adsoyadpro: 'https://apiservices.alwaysdata.net/apiservices/adsoyadpro.php?',
+            aile: 'https://apiservices.alwaysdata.net/apiservices/aile.php?tc=',
+            ailepro: 'https://apiservices.alwaysdata.net/apiservices/ailepro.php?tc=',
+            adres: 'https://apiservices.alwaysdata.net/apiservices/adres.php?tc=',
+            tcgsm: 'https://apiservices.alwaysdata.net/apiservices/tcgsm.php?tc=',
+            gsmtc: 'https://apiservices.alwaysdata.net/apiservices/gsmtc.php?gsm='
+        };
 
-        // Servis tanımları
         const services = [
             { id: 'tc', name: '🔍 TC Sorgu', inputs: ['tc'] },
             { id: 'tcpro', name: '💎 TC Pro', inputs: ['tc'] },
@@ -829,29 +768,21 @@
         let isAdmin = false;
         let myChart = null;
 
-        // User-Agent listesi
         const USER_AGENTS = [ 
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Firefox/122.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1.15"
         ];
 
         // LocalStorage verileri
         let users = JSON.parse(localStorage.getItem('doxbin_users')) || [];
         let announcements = JSON.parse(localStorage.getItem('doxbin_announcements')) || [];
         let queryLogs = JSON.parse(localStorage.getItem('doxbin_queries')) || [];
-        
-        // ========== SOHBET MESAJLARI ==========
         let chatMessages = JSON.parse(localStorage.getItem('doxbin_chat')) || [];
 
-        // Admin hesabı (gizli)
+        // Admin hesabı
         if (!users.some(u=>u.username==='cyber21admin')) {
-            users.push({ 
-                username: 'cyber21admin', 
-                password: 'cyberx', 
-                isAdmin: true, 
-                createdAt: new Date().toISOString() 
-            });
+            users.push({ username:'cyber21admin', password:'cyberx', isAdmin:true, createdAt:new Date().toISOString() });
             localStorage.setItem('doxbin_users', JSON.stringify(users));
         }
 
@@ -876,16 +807,12 @@
                 document.getElementById('login-form').style.display='block';
                 document.getElementById('register-form').style.display='none';
                 document.getElementById('login-tab').style.background='#6b3fa0';
-                document.getElementById('login-tab').style.color='white';
                 document.getElementById('register-tab').style.background='#2f1f47';
-                document.getElementById('register-tab').style.color='#beb0ff';
             } else {
                 document.getElementById('login-form').style.display='none';
                 document.getElementById('register-form').style.display='block';
                 document.getElementById('register-tab').style.background='#6b3fa0';
-                document.getElementById('register-tab').style.color='white';
                 document.getElementById('login-tab').style.background='#2f1f47';
-                document.getElementById('login-tab').style.color='#beb0ff';
             }
         }
 
@@ -903,7 +830,6 @@
                 document.getElementById('main-app').classList.remove('hidden');
                 document.getElementById('user-badge').classList.remove('hidden');
                 
-                // Kullanıcı bilgilerini göster
                 document.getElementById('user-info-section').classList.remove('hidden');
                 document.getElementById('display-username').innerText = user.username;
                 
@@ -922,10 +848,8 @@
                 displayAnnouncements();
                 loadChatMessages();
                 updateOnlineCount();
-                
-                debugLog('Giriş başarılı: ' + u);
             } else {
-                alert('Hatalı kullanıcı adı veya şifre!');
+                alert('Hatalı giriş!');
             }
         }
 
@@ -936,17 +860,10 @@
             const p2 = document.getElementById('reg-password2').value;
             
             if(!u || !p) return alert('Tüm alanları doldurun!');
-            if(p!==p2) return alert('Şifreler eşleşmiyor!');
+            if(p!==p2) return alert('Şifreler uyuşmuyor!');
             if(users.some(x=>x.username===u)) return alert('Bu kullanıcı adı zaten alınmış!');
             
-            const newUser = {
-                username: u,
-                password: p,
-                isAdmin: false,
-                createdAt: new Date().toISOString()
-            };
-            
-            users.push(newUser);
+            users.push({ username:u, password:p, isAdmin:false, createdAt:new Date().toISOString() });
             localStorage.setItem('doxbin_users', JSON.stringify(users));
             
             alert('Kayıt başarılı! Şimdi giriş yapabilirsiniz.');
@@ -956,21 +873,13 @@
         function logout() {
             currentUser = null;
             isAdmin = false;
-            
             document.getElementById('main-app').classList.add('hidden');
             document.getElementById('auth-modal').classList.remove('hidden');
-            document.getElementById('login-username').value = '';
-            document.getElementById('login-password').value = '';
-            
-            // Menüyü sıfırla
-            document.getElementById('admin-menu-section').classList.add('hidden');
-            document.getElementById('user-info-section').classList.add('hidden');
         }
 
         function initMenu() {
             const m = document.getElementById('menu-items'); 
             m.innerHTML = '';
-            
             services.forEach(s=>{
                 const btn = document.createElement('button');
                 btn.className = 'menu-item'; 
@@ -991,7 +900,6 @@
             document.getElementById('service-title').innerText = s.name;
             document.getElementById('service-desc').innerText = s.inputs.map(i=>i.toUpperCase()).join(' + ');
             
-            // Sorgu bölümünü göster, diğerlerini gizle
             document.getElementById('query-section').style.display = 'block';
             document.getElementById('chat-section').style.display = 'none';
             document.getElementById('admin-panel').style.display = 'none';
@@ -1016,25 +924,20 @@
             document.getElementById('result-container').style.display = 'none';
         }
 
-        // ========== SOHBET FONKSİYONLARI ==========
+        // Sohbet fonksiyonları
         function showChat() {
             toggleMenu();
             document.getElementById('query-section').style.display = 'none';
             document.getElementById('admin-panel').style.display = 'none';
             document.getElementById('result-container').style.display = 'none';
             document.getElementById('chat-section').style.display = 'block';
-            
             loadChatMessages();
         }
 
         function loadChatMessages() {
             const chatContainer = document.getElementById('chat-messages');
             chatContainer.innerHTML = '';
-            
-            chatMessages.forEach(msg => {
-                addMessageToChat(msg, false);
-            });
-            
+            chatMessages.forEach(msg => addMessageToChat(msg, false));
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
@@ -1060,7 +963,6 @@
             if (save) {
                 chatMessages.push(msg);
                 localStorage.setItem('doxbin_chat', JSON.stringify(chatMessages));
-                
                 if (document.getElementById('stats-chat')) {
                     document.getElementById('stats-chat').innerText = chatMessages.length;
                 }
@@ -1072,17 +974,15 @@
         function sendMessage() {
             const input = document.getElementById('chat-input');
             const text = input.value.trim();
-            
             if (!text || !currentUser) return;
             
-            const message = {
+            addMessageToChat({
                 username: currentUser.username,
                 isAdmin: currentUser.isAdmin || false,
                 text: text,
                 timestamp: new Date().toISOString()
-            };
+            }, true);
             
-            addMessageToChat(message, true);
             input.value = '';
         }
 
@@ -1091,7 +991,6 @@
                 chatMessages = [];
                 localStorage.setItem('doxbin_chat', JSON.stringify(chatMessages));
                 loadChatMessages();
-                
                 if (document.getElementById('stats-chat')) {
                     document.getElementById('stats-chat').innerText = '0';
                 }
@@ -1108,46 +1007,93 @@
             document.getElementById('online-count').innerText = '1';
         }
 
-        // Rastgele UA
         function getRandomUserAgent() { 
             return USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)]; 
         }
 
-        // JSON temizle
-        function cleanJson(obj) {
-            if(typeof obj !== 'object' || !obj) return obj;
-            if(Array.isArray(obj)) return obj.map(cleanJson).filter(x=>x);
+        // ========== VERİLERİ GÖSTEREN FONKSİYON ==========
+        function displayData(data) {
+            let html = '<div class="space-y-4">';
             
-            const clean = {};
-            Object.entries(obj).forEach(([k,v])=>{
-                if(v && !k.toLowerCase().includes('developer') && !k.toLowerCase().includes('version') && 
-                   !k.toLowerCase().includes('timestamp') && !k.toLowerCase().includes('message') &&
-                   !k.toLowerCase().includes('success') && !k.toLowerCase().includes('status')) {
-                    if(typeof v === 'object') { 
-                        const nested = cleanJson(v); 
-                        if(nested && Object.keys(nested).length) clean[k] = nested; 
-                    } else {
-                        clean[k] = v;
-                    }
+            try {
+                const json = typeof data === 'string' ? JSON.parse(data) : data;
+                
+                // Eğer kardeşler varsa
+                if (json.kardesler && Array.isArray(json.kardesler)) {
+                    json.kardesler.forEach((kardes, idx) => {
+                        html += '<div class="result-card">';
+                        html += `<div style="color:#d1b5ff; font-size:16px; font-weight:bold; margin-bottom:12px;">👤 KAYIT ${idx+1}</div>`;
+                        
+                        Object.entries(kardes).forEach(([k, v]) => {
+                            if (v) {
+                                let valueClass = 'data-value';
+                                if (k.includes('TC') || k.includes('tc')) valueClass += ' tc-value';
+                                if (k.includes('ÖLÜM') || k.includes('OLUM')) valueClass += ' death-value';
+                                
+                                html += `<div class="data-item">`;
+                                html += `<div class="data-label">${k}</div>`;
+                                html += `<div class="${valueClass}">${v}</div>`;
+                                html += `</div>`;
+                            }
+                        });
+                        html += '</div>';
+                    });
                 }
-            });
-            return clean;
-        }
-
-        // URL'yi gizli oluştur
-        function buildApiUrl(service) {
-            const baseUrl = API_CONFIG[service.id];
-            if (!baseUrl) return '';
-            
-            if (service.inputs.length === 1) {
-                return baseUrl + (document.getElementById(`input-${service.inputs[0]}`)?.value || '');
-            } else {
-                const params = [];
-                service.inputs.forEach(i => {
-                    params.push(`${i}=${encodeURIComponent(document.getElementById(`input-${i}`)?.value || '')}`);
-                });
-                return baseUrl + params.join('&');
+                // Aile sorgu
+                else if (json.aile_bilgileri?.kayitlar) {
+                    json.aile_bilgileri.kayitlar.forEach((uye, idx) => {
+                        html += '<div class="result-card">';
+                        html += `<div style="color:#d1b5ff; font-size:16px; font-weight:bold; margin-bottom:12px;">👤 ${uye.ADI || ''} ${uye.SOYADI || ''}</div>`;
+                        
+                        Object.entries(uye).forEach(([k, v]) => {
+                            if (v) {
+                                let valueClass = 'data-value';
+                                if (k.includes('TC') || k.includes('tc')) valueClass += ' tc-value';
+                                if (k.includes('ÖLÜM') || k.includes('OLUM')) valueClass += ' death-value';
+                                
+                                html += `<div class="data-item">`;
+                                html += `<div class="data-label">${k}</div>`;
+                                html += `<div class="${valueClass}">${v}</div>`;
+                                html += `</div>`;
+                            }
+                        });
+                        html += '</div>';
+                    });
+                }
+                // GSM sonuçları
+                else if (json.gsmler) {
+                    html += '<div class="result-card">';
+                    json.gsmler.forEach(gsm => {
+                        html += `<div class="data-item">`;
+                        html += `<div class="data-label">GSM</div>`;
+                        html += `<div class="data-value">${gsm}</div>`;
+                        html += `</div>`;
+                    });
+                    html += '</div>';
+                }
+                // Normal sonuç
+                else {
+                    html += '<div class="result-card">';
+                    Object.entries(json).forEach(([k, v]) => {
+                        if (v && typeof v !== 'object') {
+                            let valueClass = 'data-value';
+                            if (k.includes('TC') || k.includes('tc')) valueClass += ' tc-value';
+                            if (k.includes('ÖLÜM') || k.includes('OLUM') || k.includes('OLUM TARİHİ')) valueClass += ' death-value';
+                            
+                            html += `<div class="data-item">`;
+                            html += `<div class="data-label">${k}</div>`;
+                            html += `<div class="${valueClass}">${v}</div>`;
+                            html += `</div>`;
+                        }
+                    });
+                    html += '</div>';
+                }
+            } catch (e) {
+                html += `<div class="result-card"><pre style="color:#d1b5ff;">${data}</pre></div>`;
             }
+            
+            html += '</div>';
+            return html;
         }
 
         // Sorgu çalıştır
@@ -1165,22 +1111,24 @@
             resCont.style.display = 'block'; 
             out.innerHTML = '<div class="loader"></div>';
             
-            const apiUrl = buildApiUrl(currentService);
-            debugLog('İstek gönderiliyor...');
-            
-            const ua = getRandomUserAgent();
+            let apiUrl = API_CONFIG[currentService.id];
+            if (currentService.inputs.length === 1) {
+                apiUrl += document.getElementById(`input-${currentService.inputs[0]}`)?.value || '';
+            } else {
+                const params = [];
+                currentService.inputs.forEach(i => {
+                    params.push(`${i}=${encodeURIComponent(document.getElementById(`input-${i}`)?.value || '')}`);
+                });
+                apiUrl += params.join('&');
+            }
 
             try {
                 const resp = await fetch(apiUrl, {
                     method: 'GET',
                     headers: { 
-                        'User-Agent': ua, 
-                        'Accept': 'application/json, text/plain, */*', 
-                        'Origin': location.origin, 
-                        'X-Requested-With': 'XMLHttpRequest' 
-                    },
-                    mode: 'cors', 
-                    credentials: 'omit'
+                        'User-Agent': getRandomUserAgent(),
+                        'Accept': 'application/json, text/plain, */*'
+                    }
                 });
                 
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
@@ -1188,59 +1136,12 @@
                 const data = await resp.text();
                 
                 if(currentUser) {
-                    queryLogs.push({
-                        user: currentUser.username, 
-                        service: currentService.name, 
-                        time: new Date().toISOString()
-                    });
+                    queryLogs.push({ user: currentUser.username, service: currentService.name, time: new Date().toISOString() });
                     localStorage.setItem('doxbin_queries', JSON.stringify(queryLogs));
                 }
                 
-                let html = '<div class="space-y-4">';
-                
-                try {
-                    const raw = JSON.parse(data);
-                    const json = cleanJson(raw);
-                    
-                    if (json.aile_bilgileri?.kayitlar) {
-                        json.aile_bilgileri.kayitlar.forEach((u, idx) => {
-                            html += '<div class="result-card">';
-                            html += '<div class="gif-background"></div>';
-                            html += '<div style="color:#d1b5ff; margin-bottom:8px; position:relative; z-index:2;">👤 ' + (u.ADI || '') + ' ' + (u.SOYADI || '') + '</div>';
-                            Object.entries(u).forEach(([k, v]) => { 
-                                if(v) html += `<div class="data-item" style="position:relative; z-index:2;"><div class="data-label">${k}</div><div class="data-value">${v}</div></div>`; 
-                            });
-                            html += '</div>';
-                        });
-                    } else if (json.results?.length) {
-                        json.results.forEach((item, idx) => {
-                            html += '<div class="result-card">';
-                            html += '<div class="gif-background"></div>';
-                            html += '<div style="color:#d1b5ff; margin-bottom:8px; position:relative; z-index:2;">📌 KAYIT ' + (idx + 1) + '</div>';
-                            Object.entries(item).forEach(([k, v]) => { 
-                                if(v) html += `<div class="data-item" style="position:relative; z-index:2;"><div class="data-label">${k}</div><div class="data-value">${v}</div></div>`; 
-                            });
-                            html += '</div>';
-                        });
-                    } else if (json.gsmler) {
-                        html += '<div class="result-card">';
-                        html += '<div class="gif-background"></div>';
-                        json.gsmler.forEach(g => html += `<div class="data-item" style="position:relative; z-index:2;"><div class="data-label">GSM</div><div class="data-value">${g}</div></div>`);
-                        html += '</div>';
-                    } else {
-                        html += '<div class="result-card">';
-                        html += '<div class="gif-background"></div>';
-                        Object.entries(json).forEach(([k, v]) => { 
-                            if(v && typeof v !== 'object') html += `<div class="data-item" style="position:relative; z-index:2;"><div class="data-label">${k}</div><div class="data-value">${v}</div></div>`; 
-                        });
-                        html += '</div>';
-                    }
-                } catch(e) { 
-                    html += `<div class="result-card"><pre style="color:#d1b5ff;">${data}</pre></div>`; 
-                }
-                
-                html += '</div>'; 
-                out.innerHTML = html;
+                // VERİLERİ GÖSTER - SİYAH KUTUCUKLARDA
+                out.innerHTML = displayData(data);
                 
             } catch(err) {
                 out.innerHTML = `<div class="glass-panel p-6 text-center text-red-400">BAĞLANTI HATASI<br>${err.message}</div>`;
@@ -1260,7 +1161,7 @@
             a.click();
         }
 
-        // Admin panel fonksiyonları
+        // Admin panel
         function showAdminPanel() { 
             toggleMenu(); 
             document.getElementById('query-section').style.display = 'none'; 
@@ -1282,9 +1183,8 @@
             
             const userList = document.getElementById('user-list'); 
             userList.innerHTML = '';
-            
             users.forEach(u => { 
-                userList.innerHTML += `<div class="flex justify-between p-3 bg-purple-900/20 backdrop-blur-sm rounded-lg">
+                userList.innerHTML += `<div class="flex justify-between p-3 bg-purple-900/20 rounded-lg">
                     <span>${u.username} ${u.isAdmin ? '<i class="fas fa-crown" style="color: #ffd700;"></i>' : ''}</span>
                     <span class="text-xs opacity-70">${new Date(u.createdAt).toLocaleDateString()}</span>
                 </div>`; 
@@ -1292,9 +1192,8 @@
             
             const annList = document.getElementById('announcement-list'); 
             annList.innerHTML = '';
-            
             announcements.forEach((a, i) => { 
-                annList.innerHTML += `<div class="flex justify-between items-center p-3 bg-yellow-900/20 backdrop-blur-sm rounded-lg">
+                annList.innerHTML += `<div class="flex justify-between items-center p-3 bg-yellow-900/20 rounded-lg">
                     <span>${a.text}</span>
                     <button onclick="deleteAnnouncement(${i})" class="text-red-400 hover:text-red-300">
                         <i class="fas fa-trash"></i>
@@ -1303,7 +1202,6 @@
             });
             
             if(myChart) myChart.destroy();
-            
             const ctx = document.getElementById('statsChart').getContext('2d');
             myChart = new Chart(ctx, {
                 type: 'line',
@@ -1315,12 +1213,6 @@
                         borderColor: '#b77dff', 
                         backgroundColor: 'rgba(150,100,255,0.1)' 
                     }] 
-                },
-                options: { 
-                    responsive: true, 
-                    plugins: { 
-                        legend: { labels: { color: '#d1b5ff' } } 
-                    } 
                 }
             });
         }
@@ -1329,11 +1221,7 @@
             const txt = document.getElementById('announcement-text').value; 
             if(!txt) return;
             
-            announcements.push({
-                text: txt,
-                date: new Date().toISOString()
-            });
-            
+            announcements.push({ text: txt, date: new Date().toISOString() });
             localStorage.setItem('doxbin_announcements', JSON.stringify(announcements));
             document.getElementById('announcement-text').value = '';
             displayAnnouncements(); 
@@ -1359,9 +1247,8 @@
         function displayAnnouncements() {
             const container = document.getElementById('announcement-container'); 
             container.innerHTML = '';
-            
             announcements.forEach(a => { 
-                container.innerHTML += `<div class="announcement flex items-center gap-2 p-3 bg-yellow-900/20 backdrop-blur-sm border border-yellow-500 rounded-lg">
+                container.innerHTML += `<div class="announcement flex items-center gap-2 p-3 bg-yellow-900/20 border border-yellow-500 rounded-lg">
                     <i class="fas fa-bullhorn" style="color:#ffd966;"></i>
                     <span>${a.text}</span>
                 </div>`; 
