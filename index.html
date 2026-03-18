@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DOXBİN | HIZLI SORGÜ</title>
+    <title>DOXBİN | SORGÜ PANELİ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -22,7 +22,7 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
         
-        /* KANLI ARKAPLAN - HIZLI */
+        /* KANLI ARKAPLAN */
         .blood-bg {
             position: fixed;
             top: 0;
@@ -39,180 +39,163 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(180,0,0,0.2) 0%, transparent 40%),
-                        radial-gradient(circle at 70% 60%, rgba(120,0,0,0.15) 0%, transparent 45%);
+            background: radial-gradient(circle at 30% 40%, rgba(180,0,0,0.3) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(120,0,0,0.2) 0%, transparent 45%);
             animation: bloodWave 8s ease-in-out infinite;
             z-index: -1;
         }
         
         @keyframes bloodWave {
-            0%,100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.05); }
+            0%,100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
         }
         
-        /* HIZLI GLASS */
+        /* CAM EFEKT */
         .glass-panel {
-            background: rgba(15, 8, 8, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(20, 8, 8, 0.85);
+            backdrop-filter: blur(15px);
             border: 1px solid #8b0000;
-            border-radius: 20px;
-            transition: all 0.2s;
+            box-shadow: 0 8px 32px rgba(139, 0, 0, 0.4);
+            border-radius: 24px;
         }
         
-        /* DOXBİN LOGO */
         .doxbin-title {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 900;
             background: linear-gradient(135deg, #ff4d4d, #8b0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px #ff0000);
-            letter-spacing: 3px;
+            filter: drop-shadow(0 0 20px #ff0000);
+            letter-spacing: 4px;
+            text-transform: uppercase;
         }
         
-        /* HIZLI INPUT */
+        /* INPUT */
         .input-blood {
             background: rgba(0, 0, 0, 0.5);
             border: 2px solid #8b0000;
             border-radius: 14px;
-            padding: 14px 16px;
+            padding: 16px;
             color: white;
             width: 100%;
             font-size: 16px;
-            transition: all 0.2s;
         }
         
         .input-blood:focus {
             outline: none;
             border-color: #ff4d4d;
-            box-shadow: 0 0 20px #ff0000;
-            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 25px #ff0000;
         }
         
-        .input-blood::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 14px;
-        }
-        
-        /* HIZLI BUTON */
+        /* BUTONLAR */
         .btn-primary {
             background: linear-gradient(135deg, #8b0000, #4a0000);
             border: 1px solid #ff4d4d;
             border-radius: 14px;
-            padding: 14px 20px;
+            padding: 16px;
             color: white;
             font-weight: 700;
             font-size: 16px;
             width: 100%;
-            transition: all 0.15s;
             cursor: pointer;
+            transition: all 0.2s;
         }
         
         .btn-primary:active {
             transform: scale(0.97);
-            background: #8b0000;
         }
         
         .btn-secondary {
             background: transparent;
             border: 1px solid #8b0000;
             border-radius: 10px;
-            padding: 6px 12px;
+            padding: 8px 14px;
             color: #ff9999;
             font-weight: 600;
-            font-size: 12px;
-            transition: all 0.15s;
             cursor: pointer;
         }
         
-        .btn-secondary:active {
-            background: rgba(139, 0, 0, 0.2);
-        }
-        
-        /* HIZLI MENÜ */
-        .menu-item {
-            background: rgba(139, 0, 0, 0.1);
-            border: 1px solid #8b0000;
-            border-radius: 12px;
-            padding: 12px 14px;
-            margin-bottom: 6px;
-            color: #ffb3b3;
-            font-weight: 500;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.15s;
-            font-size: 14px;
-        }
-        
-        .menu-item:active {
-            background: rgba(139, 0, 0, 0.3);
-        }
-        
-        /* HIZLI SONUÇ KARTI */
+        /* SONUÇ KARTLARI */
         .result-card {
-            background: linear-gradient(145deg, #1a0f0f, #120808);
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 10px;
+            background: linear-gradient(145deg, #1e1212, #140a0a);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 14px;
             border: 1px solid #8b0000;
         }
         
         .data-item {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 8px 12px;
-            margin-bottom: 6px;
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
             border-left: 3px solid #ff4d4d;
         }
         
         .data-label {
-            font-size: 10px;
+            font-size: 11px;
             color: #ff9999;
             text-transform: uppercase;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
         
         .data-value {
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             color: #fff;
             word-break: break-word;
         }
         
         .tc-value {
             color: #ffd700;
-            font-weight: 600;
+            font-weight: 700;
         }
         
-        /* LOADER - HIZLI */
+        /* MENÜ */
+        .menu-item {
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid #8b0000;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 8px;
+            color: #ffb3b3;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+        
+        .menu-item:active {
+            background: rgba(139, 0, 0, 0.3);
+        }
+        
+        /* LOADER */
         .loader {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(139, 0, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(139, 0, 0, 0.2);
             border-top-color: #ff0000;
             border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            margin: 20px auto;
+            animation: spin 0.8s linear infinite;
+            margin: 30px auto;
         }
         
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
         
-        /* SCROLLBAR - HIZLI */
+        /* SCROLLBAR */
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         ::-webkit-scrollbar-track {
             background: #1a0a0a;
         }
         ::-webkit-scrollbar-thumb {
             background: #8b0000;
-            border-radius: 4px;
+            border-radius: 5px;
         }
         
-        /* TELEGRAM POPUP - HIZLI */
+        /* TELEGRAM POPUP */
         .telegram-popup {
             animation: slideDown 0.3s ease;
             border-bottom: 3px solid #ff0000;
@@ -224,6 +207,22 @@
             from { transform: translateY(-100%); }
             to { transform: translateY(0); }
         }
+
+        /* HATA AYIKLAMA PANELİ */
+        .debug-panel {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #8b0000;
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 10px;
+            color: #ff9999;
+            max-width: 200px;
+            display: none;
+            z-index: 100;
+        }
     </style>
 </head>
 <body>
@@ -231,73 +230,76 @@
     <div class="blood-bg"></div>
     <div class="blood-overlay"></div>
 
+    <!-- HATA AYIKLAMA PANELİ -->
+    <div id="debugPanel" class="debug-panel"></div>
+
     <!-- TELEGRAM POPUP -->
-    <div id="telegramPopup" class="fixed top-0 left-0 right-0 telegram-popup py-2 px-4 flex items-center justify-between z-50" style="display: none;">
-        <div class="flex items-center gap-2">
-            <i class="fab fa-telegram text-xl" style="color: #ff4d4d;"></i>
-            <span class="font-bold text-sm text-white">@doxbinhack</span>
+    <div id="telegramPopup" class="fixed top-0 left-0 right-0 telegram-popup py-3 px-5 flex items-center justify-between z-50" style="display: none;">
+        <div class="flex items-center gap-3">
+            <i class="fab fa-telegram text-2xl" style="color: #ff4d4d;"></i>
+            <span class="font-bold text-white">🔥 @doxbinhack</span>
         </div>
-        <a href="https://t.me/doxbinhack" target="_blank" class="btn-secondary text-xs py-1 px-3">KATIL</a>
+        <a href="https://t.me/doxbinhack" target="_blank" class="btn-secondary text-xs py-2">KATIL</a>
     </div>
 
     <!-- GÜVENLİK KATMANI -->
     <div id="security-layer" class="fixed inset-0 z-50 flex items-center justify-center" style="background: #0a0000;">
-        <div class="glass-panel p-6 text-center max-w-xs w-11/12">
-            <i class="fas fa-shield-alt text-4xl mb-3" style="color: #ff4d4d;"></i>
-            <h2 class="doxbin-title text-2xl mb-1">DOXBİN</h2>
-            <p class="mb-4 text-xs opacity-70 text-white">Güvenlik doğrulaması</p>
-            <button onclick="verifySecurity()" class="btn-primary text-sm py-3">DOĞRULAMAYI BAŞLAT</button>
+        <div class="glass-panel p-8 text-center max-w-sm w-11/12">
+            <i class="fas fa-shield-alt text-5xl mb-4" style="color: #ff4d4d;"></i>
+            <h2 class="doxbin-title text-3xl mb-2">DOXBİN</h2>
+            <p class="mb-6 opacity-80 text-white">Güvenlik doğrulaması yapılıyor...</p>
+            <button onclick="verifySecurity()" class="btn-primary">DOĞRULAMAYI BAŞLAT</button>
         </div>
     </div>
 
     <!-- ANA UYGULAMA -->
     <div id="main-app" class="hidden h-full flex flex-col">
         <!-- NAVBAR -->
-        <nav class="glass-panel mx-3 mt-2 px-4 py-2 flex justify-between items-center">
-            <button onclick="toggleMenu()" class="w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                <i class="fas fa-bars text-lg" style="color: #ff4d4d;"></i>
+        <nav class="glass-panel px-4 py-3 flex justify-between items-center mx-3 mt-2">
+            <button onclick="toggleMenu()" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                <i class="fas fa-bars text-xl" style="color: #ff4d4d;"></i>
             </button>
-            <span class="doxbin-title text-xl">DOXBİN</span>
-            <a href="https://t.me/doxbinhack" target="_blank" class="w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                <i class="fab fa-telegram text-lg" style="color: #ff4d4d;"></i>
+            <span class="doxbin-title text-2xl">DOXBİN</span>
+            <a href="https://t.me/doxbinhack" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                <i class="fab fa-telegram text-xl" style="color: #ff4d4d;"></i>
             </a>
         </nav>
 
         <!-- MENÜ -->
-        <div id="sidebar" class="fixed top-0 left-0 h-full w-64 glass-panel z-40 transform -translate-x-full transition-transform p-4 overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-                <span class="font-bold text-base" style="color: #ff4d4d;">⚔️ SORGULAR</span>
-                <button onclick="toggleMenu()" class="w-7 h-7 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
-                    <i class="fas fa-times text-sm" style="color: #ff4d4d;"></i>
+        <div id="sidebar" class="fixed top-0 left-0 h-full w-72 glass-panel z-40 transform -translate-x-full transition-transform p-5 overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <span class="font-bold text-lg" style="color: #ff4d4d;">⚔️ SORGULAR</span>
+                <button onclick="toggleMenu()" class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                    <i class="fas fa-times" style="color: #ff4d4d;"></i>
                 </button>
             </div>
-            <div id="menu-items" class="space-y-1"></div>
+            <div id="menu-items" class="space-y-2"></div>
         </div>
 
         <!-- ANA İÇERİK -->
-        <main class="flex-1 overflow-y-auto p-3">
+        <main class="flex-1 overflow-y-auto p-4">
             <!-- SORGU KARTI -->
-            <div class="glass-panel p-4 mb-3">
-                <h1 id="service-title" class="text-center font-bold text-lg mb-1" style="color: #ffb3b3;">TC Sorgu</h1>
-                <p id="service-desc" class="text-center text-xs opacity-60 mb-3">TC Kimlik Numarası Girin</p>
+            <div class="glass-panel p-5 mb-4">
+                <h1 id="service-title" class="text-center font-bold text-xl mb-1" style="color: #ffb3b3;">TC Sorgu</h1>
+                <p id="service-desc" class="text-center text-sm opacity-70 mb-4">TC Kimlik Numarası Girin</p>
                 
                 <div id="input-container">
-                    <input type="text" id="input-tc" placeholder="TC KİMLİK NO" class="input-blood mb-2">
-                    <button onclick="runQuery()" class="btn-primary text-sm py-3">
-                        <i class="fas fa-search mr-1"></i>SORGULA
+                    <input type="text" id="input-tc" placeholder="TC KİMLİK NO GİRİN" class="input-blood mb-3">
+                    <button onclick="runQuery()" class="btn-primary">
+                        <i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT
                     </button>
                 </div>
             </div>
 
             <!-- SONUÇ BÖLÜMÜ -->
             <div id="result-container" style="display: none;">
-                <div class="flex justify-between items-center mb-2">
-                    <h3 class="font-bold flex items-center gap-1 text-sm" style="color: #ffb3b3;">
-                        <i class="fas fa-skull text-base" style="color: #ff4d4d;"></i> SONUÇ
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-bold flex items-center gap-2" style="color: #ffb3b3;">
+                        <i class="fas fa-skull" style="color: #ff4d4d;"></i> KANLI SONUÇ
                     </h3>
-                    <div class="flex gap-1">
-                        <button onclick="copyResult()" class="btn-secondary text-xs"><i class="fas fa-copy mr-1"></i>KOPYALA</button>
-                        <button onclick="downloadResult()" class="btn-secondary text-xs"><i class="fas fa-download mr-1"></i>İNDİR</button>
+                    <div class="flex gap-2">
+                        <button onclick="copyResult()" class="btn-secondary"><i class="fas fa-copy mr-1"></i>KOPYALA</button>
+                        <button onclick="downloadResult()" class="btn-secondary"><i class="fas fa-download mr-1"></i>İNDİR</button>
                     </div>
                 </div>
                 <div id="output-box"></div>
@@ -306,15 +308,37 @@
     </div>
 
     <script>
+        // ========== HATA AYIKLAMA FONKSİYONU ==========
+        function debugLog(message, data = null) {
+            const debugPanel = document.getElementById('debugPanel');
+            debugPanel.style.display = 'block';
+            const time = new Date().toLocaleTimeString();
+            let logMessage = `[${time}] ${message}`;
+            if (data) {
+                if (typeof data === 'object') {
+                    logMessage += `\n${JSON.stringify(data).substring(0, 100)}`;
+                } else {
+                    logMessage += `\n${data.substring(0, 100)}`;
+                }
+            }
+            debugPanel.innerHTML = logMessage;
+            console.log(`[DEBUG] ${message}`, data);
+            
+            // 5 saniye sonra kaybol
+            setTimeout(() => {
+                debugPanel.style.display = 'none';
+            }, 5000);
+        }
+
         // ========== GÜÇLÜ USER-AGENT'LER ==========
         const USER_AGENTS = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Safari/605.1.15",
-            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148"
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
         ];
 
-        // ========== API LİSTESİ ==========
+        // ========== API LİSTESİ - HTTPS ==========
         const API_BASE = 'https://apiservices.alwaysdata.net/apiservices/';
         
         const services = [
@@ -322,18 +346,18 @@
             { id: 'tcpro', name: '💎 TC Pro', url: API_BASE + 'tcpro.php?tc=', inputs: ['tc'] },
             { id: 'adsoyad', name: '📇 Ad Soyad', url: API_BASE + 'adsoyad.php?', inputs: ['ad', 'soyad'] },
             { id: 'adsoyadpro', name: '⚡ Ad Soyad Pro', url: API_BASE + 'adsoyadpro.php?', inputs: ['ad', 'soyad', 'il'] },
-            { id: 'aile', name: '👪 Aile', url: API_BASE + 'aile.php?tc=', inputs: ['tc'] },
+            { id: 'aile', name: '👪 Aile Sorgu', url: API_BASE + 'aile.php?tc=', inputs: ['tc'] },
             { id: 'ailepro', name: '👑 Aile Pro', url: API_BASE + 'ailepro.php?tc=', inputs: ['tc'] },
-            { id: 'kardes', name: '🤝 Kardeş', url: API_BASE + 'kardes.php?tc=', inputs: ['tc'] },
-            { id: 'adres', name: '🏠 Adres', url: API_BASE + 'adres.php?tc=', inputs: ['tc'] },
-            { id: 'iban', name: '💳 IBAN', url: API_BASE + 'iban.php?iban=', inputs: ['iban'] },
-            { id: 'tcgsm', name: '📱 TC→GSM', url: API_BASE + 'tcgsm.php?tc=', inputs: ['tc'] },
-            { id: 'gsmtc', name: '🔄 GSM→TC', url: API_BASE + 'gsmtc.php?gsm=', inputs: ['gsm'] }
+            { id: 'kardes', name: '🤝 Kardeş Sorgu', url: API_BASE + 'kardes.php?tc=', inputs: ['tc'] },
+            { id: 'adres', name: '🏠 Adres Sorgu', url: API_BASE + 'adres.php?tc=', inputs: ['tc'] },
+            { id: 'iban', name: '💳 IBAN Sorgu', url: API_BASE + 'iban.php?iban=', inputs: ['iban'] },
+            { id: 'tcgsm', name: '📱 TC → GSM', url: API_BASE + 'tcgsm.php?tc=', inputs: ['tc'] },
+            { id: 'gsmtc', name: '🔄 GSM → TC', url: API_BASE + 'gsmtc.php?gsm=', inputs: ['gsm'] }
         ];
 
         let currentService = services[0];
 
-        // TELEGRAM POPUP - 5 SN
+        // TELEGRAM POPUP
         setTimeout(() => {
             document.getElementById('telegramPopup').style.display = 'flex';
             setTimeout(() => {
@@ -350,7 +374,8 @@
                 document.getElementById('security-layer').style.display = 'none';
                 document.getElementById('main-app').classList.remove('hidden');
                 initMenu();
-            }, 1500);
+                debugLog('Güvenlik geçildi, uygulama başlatıldı');
+            }, 2000);
         }
 
         // MENÜ
@@ -363,6 +388,7 @@
                 btn.onclick = () => selectService(s);
                 menu.appendChild(btn);
             });
+            debugLog('Menü yüklendi', services.length + ' servis');
         }
 
         function toggleMenu() {
@@ -383,31 +409,32 @@
                 const inputEl = document.createElement('input');
                 inputEl.placeholder = input.toUpperCase() + ' GİRİN';
                 inputEl.id = `input-${input}`;
-                inputEl.className = "input-blood mb-2";
-                inputEl.value = ''; // TAMAMEN BOŞ
+                inputEl.className = "input-blood mb-3";
+                inputEl.value = '';
                 container.appendChild(inputEl);
             });
 
             const btn = document.createElement('button');
-            btn.className = "btn-primary text-sm py-3";
-            btn.innerHTML = '<i class="fas fa-search mr-1"></i>SORGULA';
+            btn.className = "btn-primary";
+            btn.innerHTML = '<i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT';
             btn.onclick = runQuery;
             container.appendChild(btn);
             
             document.getElementById('result-container').style.display = 'none';
+            debugLog('Servis seçildi', service.name);
         }
 
-        // RASTGELE USER-AGENT
+        // Rastgele User-Agent seç
         function getRandomUserAgent() {
             return USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
         }
 
-        // JSON TEMİZLE
+        // JSON temizleme
         function cleanJson(obj) {
             if (typeof obj !== 'object' || obj === null) return obj;
             
             if (Array.isArray(obj)) {
-                return obj.map(item => cleanJson(item)).filter(item => item !== null);
+                return obj.map(item => cleanJson(item)).filter(item => item !== null && item !== '');
             }
             
             const clean = {};
@@ -418,7 +445,9 @@
                     !keyLower.includes('success') && 
                     !keyLower.includes('message') && 
                     !keyLower.includes('timestamp') &&
-                    value !== null && value !== '') {
+                    !keyLower.includes('status') &&
+                    value !== null && 
+                    value !== '') {
                     
                     if (typeof value === 'object') {
                         const nested = cleanJson(value);
@@ -433,7 +462,7 @@
             return clean;
         }
 
-        // SORGU ÇALIŞTIR
+        // SORGU ÇALIŞTIR - CORS HEADER'LAR EKLENDİ
         async function runQuery() {
             const out = document.getElementById('output-box');
             const resCont = document.getElementById('result-container');
@@ -465,49 +494,125 @@
                 apiUrl += params.join('&');
             }
 
+            const randomUA = getRandomUserAgent();
+            debugLog('API isteği gönderiliyor', apiUrl);
+            debugLog('Kullanılan User-Agent', randomUA);
+
             try {
+                // CORS header'ları ile istek
                 const response = await fetch(apiUrl, {
-                    headers: { 'User-Agent': getRandomUserAgent() }
+                    method: 'GET',
+                    headers: {
+                        'User-Agent': randomUA,
+                        'Accept': 'application/json, text/plain, */*',
+                        'Origin': window.location.origin,
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
                 });
                 
+                debugLog('Yanıt alındı', 'Status: ' + response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP Hata! Status: ${response.status}`);
+                }
+                
                 const data = await response.text();
-                let html = '<div>';
+                debugLog('Veri alındı', data.substring(0, 200) + '...');
+                
+                let html = '<div class="space-y-4">';
                 
                 try {
-                    const json = cleanJson(JSON.parse(data));
+                    const rawJson = JSON.parse(data);
+                    const json = cleanJson(rawJson);
                     
-                    if (json.kardesler) {
-                        json.kardesler.forEach(k => {
+                    // KARDEŞ SORGU
+                    if (json.kardesler && Array.isArray(json.kardesler)) {
+                        json.kardesler.forEach((kardes, idx) => {
                             html += '<div class="result-card">';
-                            Object.entries(k).forEach(([k,v]) => {
-                                html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value ${k.includes('TC')?'tc-value':''}">${v}</div></div>`;
+                            html += `<div style="color:#ff9999; margin-bottom:8px;">👤 KAYIT ${idx+1}</div>`;
+                            Object.entries(kardes).forEach(([k,v]) => {
+                                if(v) html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value ${k.includes('TC')?'tc-value':''}">${v}</div></div>`;
                             });
                             html += '</div>';
                         });
-                    } else {
+                    }
+                    // AİLE SORGU
+                    else if (json.aile_bilgileri?.kayitlar) {
+                        json.aile_bilgileri.kayitlar.forEach((uye, idx) => {
+                            html += '<div class="result-card">';
+                            html += `<div style="color:#ff9999; margin-bottom:8px;">👤 ${uye.ADI || ''} ${uye.SOYADI || ''}</div>`;
+                            Object.entries(uye).forEach(([k,v]) => {
+                                if(v) html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value ${k.includes('TC')?'tc-value':''}">${v}</div></div>`;
+                            });
+                            html += '</div>';
+                        });
+                    }
+                    // RESULTS ARRAY
+                    else if (json.results && Array.isArray(json.results)) {
+                        json.results.forEach((item, idx) => {
+                            html += '<div class="result-card">';
+                            html += `<div style="color:#ff9999; margin-bottom:8px;">📌 KAYIT ${idx+1}</div>`;
+                            Object.entries(item).forEach(([k,v]) => {
+                                if(v) html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value ${k.includes('TC')?'tc-value':''}">${v}</div></div>`;
+                            });
+                            html += '</div>';
+                        });
+                    }
+                    // IBAN SORGU
+                    else if (json.data) {
+                        html += '<div class="result-card">';
+                        Object.entries(json.data).forEach(([k,v]) => {
+                            if(v && typeof v !== 'object') {
+                                html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value">${v}</div></div>`;
+                            }
+                        });
+                        html += '</div>';
+                    }
+                    // TC GSM
+                    else if (json.gsmler) {
+                        html += '<div class="result-card">';
+                        json.gsmler.forEach(gsm => {
+                            html += `<div class="data-item"><div class="data-label">GSM</div><div class="data-value">${gsm}</div></div>`;
+                        });
+                        html += '</div>';
+                    }
+                    // DİĞER
+                    else {
                         html += '<div class="result-card">';
                         Object.entries(json).forEach(([k,v]) => {
-                            if(typeof v !== 'object') {
+                            if(v && typeof v !== 'object') {
                                 html += `<div class="data-item"><div class="data-label">${k}</div><div class="data-value ${k.includes('TC')?'tc-value':''}">${v}</div></div>`;
                             }
                         });
                         html += '</div>';
                     }
-                } catch {
-                    html += `<div class="result-card"><pre style="font-size:12px;">${data}</pre></div>`;
+                    
+                } catch (e) {
+                    debugLog('JSON parse hatası', e.message);
+                    // JSON değilse direkt göster
+                    html += `<div class="result-card"><pre style="color:#ff9999;">${data}</pre></div>`;
                 }
                 
                 html += '</div>';
                 out.innerHTML = html;
                 
             } catch (error) {
-                out.innerHTML = `<div class="glass-panel p-4 text-center text-red-400">Hata: ${error.message}</div>`;
+                debugLog('HATA', error.message);
+                out.innerHTML = `<div class="glass-panel p-6 text-center" style="color:#ff4d4d;">
+                    <i class="fas fa-exclamation-triangle text-4xl mb-3"></i>
+                    <p class="text-lg font-bold">BAĞLANTI HATASI</p>
+                    <p class="text-sm opacity-70 mt-2">${error.message}</p>
+                    <p class="text-xs opacity-50 mt-4">API: ${apiUrl}</p>
+                </div>`;
             }
         }
 
         function copyResult() {
             const text = document.getElementById('output-box').innerText;
             navigator.clipboard.writeText(text);
+            debugLog('Kopyalandı', text.length + ' karakter');
             alert('✓ Kopyalandı');
         }
 
@@ -518,6 +623,7 @@
             a.href = URL.createObjectURL(blob);
             a.download = `DOXBIN_${Date.now()}.txt`;
             a.click();
+            debugLog('İndirildi', text.length + ' karakter');
         }
 
         // Güvenlik
@@ -525,6 +631,11 @@
             if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) e.preventDefault();
         });
         document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Sayfa yüklendiğinde
+        window.onload = function() {
+            debugLog('DOXBİN Panel yüklendi');
+        };
     </script>
 </body>
 </html>
