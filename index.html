@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DOXBİN | KANLI SORGÜ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0a0000;
+        }
+        
+        /* KANLI ARKAPLAN - OPTİMİZE */
+        .blood-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .blood-base {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1a0303 0%, #000000 100%);
+        }
+        
+        .blood-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(180,0,0,0.3) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(120,0,0,0.2) 0%, transparent 45%);
+            animation: bloodWave 8s ease-in-out infinite;
+        }
+        
+        .blood-drip {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(150,0,0,0.1) 50px, rgba(150,0,0,0.1) 100px);
+            animation: bloodFlow 20s linear infinite;
+        }
+        
+        .ninja {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 180px;
+            height: 230px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250"><path d="M100,30 L120,70 L150,60 L160,100 L130,130 L140,180 L110,210 L100,220 L90,210 L60,180 L70,130 L40,100 L50,60 L80,70 Z" fill="%238b0000" opacity="0.3"/><circle cx="100" cy="40" r="15" fill="%23660000" opacity="0.5"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            filter: drop-shadow(0 0 30px #ff0000);
+            animation: ninjaMove 15s ease-in-out infinite;
+        }
+        
+        @keyframes bloodWave {
+            0%,100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        
+        @keyframes bloodFlow {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        @keyframes ninjaMove {
+            0%,100% { transform: translateX(0) rotate(0deg); opacity: 0.4; }
+            25% { transform: translateX(-30px) rotate(-5deg); opacity: 0.6; }
+            75% { transform: translateX(-15px) rotate(5deg); opacity: 0.5; }
+        }
+        
+        /* CAM EFEKT */
+        .glass-blood {
+            background: rgba(20, 8, 8, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid #8b0000;
+            box-shadow: 0 8px 32px rgba(139, 0, 0, 0.4);
+        }
+        
+        /* DOXBİN LOGO */
+        .doxbin-logo {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff4d4d, #8b0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px #ff0000);
+            letter-spacing: 3px;
+        }
+        
+        /* SONUÇ KARTLARI */
+        .result-card {
+            background: linear-gradient(145deg, #1e1212, #140a0a);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #8b0000;
+            box-shadow: 0 10px 30px -10px #ff0000;
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #8b0000;
+        }
+        
+        .result-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff4d4d;
+            font-size: 24px;
+            border: 1px solid #ff4d4d;
+        }
+        
+        .result-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffb3b3;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        
+        .data-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 12px 15px;
+            border-left: 3px solid #ff4d4d;
+        }
+        
+        .data-label {
+            font-size: 11px;
+            color: #ff9999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        
+        .data-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            word-break: break-word;
+        }
+        
+        .value-tc {
+            color: #ffd700;
+            font-weight: 700;
+            text-shadow: 0 0 5px #ffd700;
+        }
+        
+        .value-gsm {
+            color: #4ecdc4;
+            font-weight: 600;
+        }
+        
+        .value-banka {
+            color: #bf7af0;
+            font-weight: 600;
+        }
+        
+        /* BUTONLAR */
+        .btn-blood {
+            background: linear-gradient(135deg, #8b0000, #4a0000);
+            border: 1px solid #ff4d4d;
+            border-radius: 14px;
+            padding: 16px;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn-blood:active {
+            transform: scale(0.97);
+            background: #8b0000;
+        }
+        
+        .btn-outline-blood {
+            background: transparent;
+            border: 1px solid #8b0000;
+            border-radius: 12px;
+            padding: 8px 14px;
+            color: #ff9999;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn-outline-blood:active {
+            background: rgba(139, 0, 0, 0.2);
+        }
+        
+        /* INPUT */
+        .input-blood {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #8b0000;
+            border-radius: 16px;
+            padding: 16px;
+            color: white;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .input-blood:focus {
+            outline: none;
+            border-color: #ff4d4d;
+            box-shadow: 0 0 25px #ff0000;
+        }
+        
+        /* MENÜ */
+        .menu-item {
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid #8b0000;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 8px;
+            color: #ffb3b3;
+            font-weight: 500;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .menu-item:active {
+            background: rgba(139, 0, 0, 0.3);
+        }
+        
+        /* LOADER */
+        .loader-blood {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(139, 0, 0, 0.2);
+            border-top-color: #ff0000;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 30px auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8b0000;
+            border-radius: 5px;
+        }
+        
+        /* TELEGRAM POPUP */
+        .telegram-popup {
+            animation: slideDown 0.3s ease;
+            border-bottom: 3px solid #ff0000;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- KANLI ARKAPLAN -->
+    <div class="blood-container">
+        <div class="blood-base"></div>
+        <div class="blood-layer"></div>
+        <div class="blood-drip"></div>
+        <div class="ninja"></div>
+    </div>
+
+    <!-- TELEGRAM POPUP -->
+    <div id="telegramPopup" class="fixed top-0 left-0 right-0 glass-blood telegram-popup py-3 px-5 flex items-center justify-between z-50" style="display: none;">
+        <div class="flex items-center gap-3">
+            <i class="fab fa-telegram text-2xl" style="color: #ff4d4d;"></i>
+            <span class="font-bold">🔥 @doxbinhack</span>
+        </div>
+        <a href="https://t.me/doxbinhack" target="_blank" class="btn-outline-blood text-xs">KATIL</a>
+    </div>
+
+    <!-- GÜVENLİK -->
+    <div id="security-layer" class="fixed inset-0 z-50 flex items-center justify-center" style="background: #0a0000;">
+        <div class="glass-blood p-8 rounded-3xl text-center max-w-sm w-11/12">
+            <i class="fas fa-shield-alt text-5xl mb-4" style="color: #ff4d4d;"></i>
+            <h2 class="text-2xl font-bold mb-2" style="color: #ffb3b3;">DOXBİN</h2>
+            <p class="mb-6 opacity-80">Kanlı doğrulama başlıyor...</p>
+            <button onclick="verifySecurity()" class="btn-blood">DOĞRULAMAYI BAŞLAT</button>
+        </div>
+    </div>
+
+    <!-- ANA UYGULAMA -->
+    <div id="main-app" class="hidden h-full flex flex-col">
+        <!-- NAVBAR -->
+        <nav class="glass-blood px-4 py-3 flex justify-between items-center">
+            <button onclick="toggleMenu()" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                <i class="fas fa-bars" style="color: #ff4d4d;"></i>
+            </button>
+            <span class="doxbin-logo">DOXBİN</span>
+            <a href="https://t.me/doxbinhack" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                <i class="fab fa-telegram" style="color: #ff4d4d;"></i>
+            </a>
+        </nav>
+
+        <!-- MENÜ -->
+        <div id="sidebar" class="fixed top-0 left-0 h-full w-72 glass-blood z-40 transform -translate-x-full transition-transform p-5 overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <span class="font-bold text-lg" style="color: #ff4d4d;">⚔️ SORGULAR</span>
+                <button onclick="toggleMenu()" class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(139,0,0,0.3);">
+                    <i class="fas fa-times" style="color: #ff4d4d;"></i>
+                </button>
+            </div>
+            <div id="menu-items" class="space-y-2"></div>
+        </div>
+
+        <!-- İÇERİK -->
+        <main class="flex-1 overflow-y-auto p-4">
+            <!-- SORGU KARTI -->
+            <div class="glass-blood rounded-2xl p-5 mb-4">
+                <h1 id="service-title" class="text-center font-bold text-xl mb-1" style="color: #ffb3b3;">TC Sorgu</h1>
+                <p id="service-desc" class="text-center text-sm opacity-70 mb-4">TC Kimlik Numarası Girin</p>
+                
+                <div id="input-container">
+                    <input type="text" id="input-tc" placeholder="TC KİMLİK NO" class="input-blood mb-3" value="48763804886">
+                    <button onclick="runQuery()" class="btn-blood">
+                        <i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT
+                    </button>
+                </div>
+            </div>
+
+            <!-- SONUÇ -->
+            <div id="result-container" style="display: none;">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-bold flex items-center gap-2" style="color: #ffb3b3;">
+                        <i class="fas fa-skull" style="color: #ff4d4d;"></i> KANLI SONUÇ
+                    </h3>
+                    <div class="flex gap-2">
+                        <button onclick="copyResult()" class="btn-outline-blood"><i class="fas fa-copy mr-1"></i>KOPYALA</button>
+                        <button onclick="downloadResult()" class="btn-outline-blood"><i class="fas fa-download mr-1"></i>İNDİR</button>
+                    </div>
+                </div>
+                <div id="output-box"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // TELEGRAM POPUP
+        setTimeout(() => {
+            document.getElementById('telegramPopup').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('telegramPopup').style.display = 'none';
+            }, 5000);
+        }, 1000);
+
+        // API SERVİSLERİ
+        const services = [
+            { id: 'tc', name: '🔍 TC Sorgu', url: 'https://apiservices.alwaysdata.net/apiservices/tc.php?tc=', inputs: ['tc'] },
+            { id: 'tcpro', name: '💎 TC Pro', url: 'https://apiservices.alwaysdata.net/apiservices/tcpro.php?tc=', inputs: ['tc'] },
+            { id: 'adsoyad', name: '📇 Ad Soyad', url: 'https://apiservices.alwaysdata.net/apiservices/adsoyad.php?', inputs: ['ad', 'soyad'] },
+            { id: 'aile', name: '👪 Aile', url: 'https://apiservices.alwaysdata.net/apiservices/aile.php?tc=', inputs: ['tc'] },
+            { id: 'ailepro', name: '👑 Aile Pro', url: 'https://apiservices.alwaysdata.net/apiservices/ailepro.php?tc=', inputs: ['tc'] },
+            { id: 'kardes', name: '🤝 Kardeş', url: 'https://apiservices.alwaysdata.net/apiservices/kardes.php?tc=', inputs: ['tc'] },
+            { id: 'adres', name: '🏠 Adres', url: 'https://apiservices.alwaysdata.net/apiservices/adres.php?tc=', inputs: ['tc'] },
+            { id: 'iban', name: '💳 IBAN', url: 'https://apiservices.alwaysdata.net/apiservices/iban.php?iban=', inputs: ['iban'] },
+            { id: 'tcgsm', name: '📱 TC→GSM', url: 'https://apiservices.alwaysdata.net/apiservices/tcgsm.php?tc=', inputs: ['tc'] },
+            { id: 'gsmtc', name: '🔄 GSM→TC', url: 'https://apiservices.alwaysdata.net/apiservices/gsmtc.php?gsm=', inputs: ['gsm'] }
+        ];
+
+        let currentService = services[0];
+
+        // GÜVENLİK
+        function verifySecurity() {
+            const btn = event.target.closest('button');
+            btn.innerHTML = '<div class="loader-blood"></div>';
+            
+            setTimeout(() => {
+                document.getElementById('security-layer').style.display = 'none';
+                document.getElementById('main-app').classList.remove('hidden');
+                initMenu();
+            }, 2000);
+        }
+
+        // MENÜ
+        function initMenu() {
+            const menu = document.getElementById('menu-items');
+            services.forEach(s => {
+                const btn = document.createElement('button');
+                btn.className = "menu-item";
+                btn.innerHTML = s.name;
+                btn.onclick = () => selectService(s);
+                menu.appendChild(btn);
+            });
+        }
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+        }
+
+        function selectService(service) {
+            currentService = service;
+            toggleMenu();
+            
+            document.getElementById('service-title').innerText = service.name;
+            document.getElementById('service-desc').innerText = service.inputs.map(i => i.toUpperCase()).join(' + ');
+            
+            const container = document.getElementById('input-container');
+            container.innerHTML = '';
+
+            service.inputs.forEach(input => {
+                const inputEl = document.createElement('input');
+                inputEl.placeholder = input.toUpperCase() + ' GİRİN';
+                inputEl.id = `input-${input}`;
+                inputEl.className = "input-blood mb-3";
+                if(input === 'tc') inputEl.value = '48763804886';
+                container.appendChild(inputEl);
+            });
+
+            const btn = document.createElement('button');
+            btn.className = "btn-blood";
+            btn.innerHTML = '<i class="fas fa-search mr-2"></i>SORGULAMAYI BAŞLAT';
+            btn.onclick = runQuery;
+            container.appendChild(btn);
+            
+            document.getElementById('result-container').style.display = 'none';
+        }
+
+        // SORGU ÇALIŞTIR - RENDER STATIC SITE'DE ÇALIŞIR
+        async function runQuery() {
+            const out = document.getElementById('output-box');
+            const resCont = document.getElementById('result-container');
+            resCont.style.display = 'block';
+            out.innerHTML = '<div class="loader-blood"></div>';
+
+            let apiUrl = currentService.url;
+            if (currentService.inputs.length === 1) {
+                apiUrl += document.getElementById(`input-${currentService.inputs[0]}`)?.value || '';
+            } else {
+                const params = [];
+                currentService.inputs.forEach(i => {
+                    params.push(`${i}=${encodeURIComponent(document.getElementById(`input-${i}`)?.value || '')}`);
+                });
+                apiUrl += params.join('&');
+            }
+
+            try {
+                // CORS proxy KULLANMA - direkt istek
+                const response = await fetch(apiUrl);
+                const data = await response.text();
+                
+                let html = '<div class="space-y-4">';
+                
+                try {
+                    const json = JSON.parse(data);
+                    
+                    // Gereksiz alanları sil
+                    delete json.developer;
+                    delete json.version;
+                    delete json.success;
+                    delete json.message;
+                    delete json.timestamp;
+                    
+                    // KARDEŞ SORGU ÖZEL
+                    if (json.kardesler && Array.isArray(json.kardesler)) {
+                        html += `<div class="result-card"><div class="result-header"><div class="result-icon"><i class="fas fa-users"></i></div><div class="result-title">${json.toplam_kardes || json.kardesler.length} KARDEŞ</div></div>`;
+                        
+                        json.kardesler.forEach((kardes, idx) => {
+                            html += `<div style="margin-bottom:15px; padding:10px; background:rgba(139,0,0,0.1); border-radius:12px;">`;
+                            html += `<div style="color:#ff9999; margin-bottom:8px;">👤 KARDEŞ ${idx+1}</div>`;
+                            Object.entries(kardes).forEach(([k,v]) => {
+                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'value-tc':''}">${v}</span></div>`;
+                            });
+                            html += `</div>`;
+                        });
+                        html += '</div>';
+                    }
+                    // AİLE SORGU
+                    else if (json.aile_bilgileri?.kayitlar) {
+                        html += `<div class="result-card"><div class="result-header"><div class="result-icon"><i class="fas fa-users"></i></div><div class="result-title">AİLE ÜYELERİ</div></div>`;
+                        json.aile_bilgileri.kayitlar.forEach((uye, idx) => {
+                            html += `<div style="margin-bottom:15px; padding:10px; background:rgba(139,0,0,0.1); border-radius:12px;">`;
+                            html += `<div style="color:#ff9999; margin-bottom:8px;">👤 ${uye.ADI || ''} ${uye.SOYADI || ''}</div>`;
+                            Object.entries(uye).forEach(([k,v]) => {
+                                if(v) html += `<div class="data-item" style="margin-bottom:5px;"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'value-tc':''}">${v}</span></div>`;
+                            });
+                            html += `</div>`;
+                        });
+                        html += '</div>';
+                    }
+                    // IBAN SORGU
+                    else if (json.data) {
+                        html += '<div class="result-card">';
+                        html += '<div class="result-header"><div class="result-icon"><i class="fas fa-university"></i></div><div class="result-title">IBAN BİLGİLERİ</div></div>';
+                        Object.entries(json.data).forEach(([k,v]) => {
+                            if(v && typeof v !== 'object') {
+                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('iban')?'value-banka':''}">${v}</span></div>`;
+                            }
+                        });
+                        html += '</div>';
+                    }
+                    // TC GSM
+                    else if (json.gsmler) {
+                        html += '<div class="result-card">';
+                        html += `<div class="result-header"><div class="result-icon"><i class="fas fa-phone-alt"></i></div><div class="result-title">TC: ${json.tc || ''}</div></div>`;
+                        json.gsmler.forEach(gsm => {
+                            html += `<div class="data-item"><span class="data-label">GSM:</span> <span class="data-value value-gsm">${gsm}</span></div>`;
+                        });
+                        html += '</div>';
+                    }
+                    // DİĞER
+                    else {
+                        html += '<div class="result-card">';
+                        html += '<div class="result-header"><div class="result-icon"><i class="fas fa-database"></i></div><div class="result-title">SORGÜ SONUCU</div></div>';
+                        Object.entries(json).forEach(([k,v]) => {
+                            if(v && typeof v !== 'object') {
+                                html += `<div class="data-item"><span class="data-label">${k}:</span> <span class="data-value ${k.includes('TC')?'value-tc':''}">${v}</span></div>`;
+                            }
+                        });
+                        html += '</div>';
+                    }
+                    
+                } catch (e) {
+                    html += `<div class="result-card"><pre style="color:#ff9999;">${data}</pre></div>`;
+                }
+                
+                html += '</div>';
+                out.innerHTML = html;
+                
+            } catch (error) {
+                out.innerHTML = `<div class="glass-blood p-6 text-center text-red-400">Hata: ${error.message}</div>`;
+            }
+        }
+
+        function copyResult() {
+            const text = document.getElementById('output-box').innerText;
+            navigator.clipboard.writeText(text);
+            alert('✓ Kopyalandı');
+        }
+
+        function downloadResult() {
+            const text = document.getElementById('output-box').innerText;
+            const blob = new Blob([text], {type: 'text/plain'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `DOXBIN_${Date.now()}.txt`;
+            a.click();
+        }
+
+        // Güvenlik
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) e.preventDefault();
+        });
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>
